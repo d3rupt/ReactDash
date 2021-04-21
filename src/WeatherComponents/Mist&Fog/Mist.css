@@ -1,0 +1,222 @@
+.mistContainer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+
+.mist {
+	background: rgba(255, 255, 255, 0.05);
+	border-radius: 50%;
+	box-shadow: 0 0 200px 200px rgba(255, 255, 255, 0.05);
+}
+
+.mist:nth-of-type(1) {
+	position: absolute;
+	top: 54%;
+	left: -766px;
+	height: 566px;
+	width: 566px;
+	animation-name: fog-1;
+	animation-duration: 106s;
+	animation-delay: 36s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-1 {
+	100% {
+		transform: translate3d(200vw, 15%, 0);
+	}
+}
+
+.mist:nth-of-type(2) {
+	position: absolute;
+	top: 41%;
+	left: -1164px;
+	height: 764px;
+	width: 764px;
+	animation-name: fog-2;
+	animation-duration: 189s;
+	animation-delay: 46s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-2 {
+	100% {
+		transform: translate3d(200vw, 41%, 0);
+	}
+}
+
+.mist:nth-of-type(3) {
+	position: absolute;
+	top: 39%;
+	left: -1097px;
+	height: 697px;
+	width: 697px;
+	animation-name: fog-3;
+	animation-duration: 263s;
+	animation-delay: 27s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-3 {
+	100% {
+		transform: translate3d(200vw, -31%, 0);
+	}
+}
+
+.mist:nth-of-type(4) {
+	position: absolute;
+	top: 48%;
+	left: -1085px;
+	height: 685px;
+	width: 685px;
+	animation-name: fog-4;
+	animation-duration: 297s;
+	animation-delay: 39s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-4 {
+	100% {
+		transform: translate3d(200vw, -12%, 0);
+	}
+}
+
+.mist:nth-of-type(5) {
+	position: absolute;
+	top: 57%;
+	left: -1004px;
+	height: 604px;
+	width: 604px;
+	animation-name: fog-5;
+	animation-duration: 173s;
+	animation-delay: 65s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-5 {
+	100% {
+		transform: translate3d(200vw, 27%, 0);
+	}
+}
+
+.mist:nth-of-type(6) {
+	position: absolute;
+	top: 51%;
+	left: -1168px;
+	height: 768px;
+	width: 768px;
+	animation-name: fog-6;
+	animation-duration: 212s;
+	animation-delay: 51s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-6 {
+	100% {
+		transform: translate3d(200vw, 50%, 0);
+	}
+}
+
+.mist:nth-of-type(7) {
+	position: absolute;
+	top: 42%;
+	left: -1186px;
+	height: 786px;
+	width: 786px;
+	animation-name: fog-7;
+	animation-duration: 176s;
+	animation-delay: 27s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-7 {
+	100% {
+		transform: translate3d(200vw, 48%, 0);
+	}
+}
+
+.mist:nth-of-type(8) {
+	position: absolute;
+	top: 57%;
+	left: -952px;
+	height: 552px;
+	width: 552px;
+	animation-name: fog-8;
+	animation-duration: 299s;
+	animation-delay: 38s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-8 {
+	100% {
+		transform: translate3d(200vw, -26%, 0);
+	}
+}
+
+.mist:nth-of-type(9) {
+	position: absolute;
+	top: 50%;
+	left: -1027px;
+	height: 627px;
+	width: 627px;
+	animation-name: fog-9;
+	animation-duration: 205s;
+	animation-delay: 41s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-9 {
+	100% {
+		transform: translate3d(200vw, 22%, 0);
+	}
+}
+
+.mist:nth-of-type(10) {
+	position: absolute;
+	top: 60%;
+	left: -1020px;
+	height: 620px;
+	width: 620px;
+	animation-name: fog-10;
+	animation-duration: 200s;
+	animation-delay: 54s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-10 {
+	100% {
+		transform: translate3d(200vw, 19%, 0);
+	}
+}
+
+.mist:nth-of-type(11) {
+	position: absolute;
+	top: 60%;
+	left: -1060px;
+	height: 660px;
+	width: 660px;
+	animation-name: fog-11;
+	animation-duration: 233s;
+	animation-delay: 75s;
+	animation-iteration-count: infinite;
+	animation-timing-function: ease-in;
+}
+
+@keyframes fog-11 {
+	100% {
+		transform: translate3d(200vw, -26%, 0);
+	}
+}

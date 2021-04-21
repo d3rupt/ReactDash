@@ -1,0 +1,224 @@
+.cloudsContainerOvercast {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: rgba(255,255,255,0.15);
+	backdrop-filter: brightness(70%) grayscale(0.1);
+
+}
+
+.cloudOvercast {
+	position: absolute;
+	background-image: url("clouds.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	top: -30%;
+	left: -25%;
+	height: 75%;
+	width: 75%;
+	filter: brightness(60%);
+	animation-duration: 120s;
+}
+
+.cloudOvercast:nth-of-type(1) {
+	animation-name: cloudOvercast;
+	animation-delay: -110s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes cloudOvercast {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(85vw);
+	}
+}
+
+.cloudOvercast:nth-of-type(2) {
+	animation-name: cloudOvercast;
+	animation-delay: -90s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(3) {
+	animation-name: cloudOvercast;
+	animation-delay: -70s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(4) {
+	animation-name: cloudOvercast;
+	animation-delay: -60;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(5) {
+	animation-name: cloudOvercast;
+	animation-delay: -50s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(6) {
+	animation-name: cloudOvercast;
+	animation-delay: -40s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(7) {
+	animation-name: cloudOvercast;
+	animation-delay: -30s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(8) {
+	animation-name: cloudOvercast;
+	animation-delay: -20s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(9) {
+	animation-name: cloudOvercast;
+	animation-delay: -10s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(10) {
+	animation-name: cloudOvercast;
+	animation-delay: 0s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudNight {
+	filter: brightness(30%);
+}
+
+/*
+.cloudsContainerOvercast {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: rgba(255,255,255,0.15);
+	backdrop-filter: brightness(70%) grayscale(0.75);
+
+}
+
+.cloudOvercast {
+	position: absolute;
+	background-image: url("clouds.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	top: -25%;
+	left: -25%;
+	height: 75%;
+	width: 75%;
+}
+
+.cloudOvercast:nth-of-type(1) {
+	animation-name: cloudOvercast;
+	animation-delay: 1s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+@keyframes cloudOvercast {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(85vw);
+	}
+}
+
+.cloudOvercast:nth-of-type(2) {
+	animation-name: cloudOvercast;
+	animation-delay: 20s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+
+
+.cloudOvercast:nth-of-type(3) {
+	animation-name: cloudOvercast;
+	animation-delay: 38s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(4) {
+	animation-name: cloudOvercast;
+	animation-delay: 56s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(5) {
+	animation-name: cloudOvercast;
+	animation-delay: 74s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(6) {
+	animation-name: cloudOvercast;
+	animation-delay: 92s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(7) {
+	animation-name: cloudOvercast;
+	animation-delay: 110s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(8) {
+	animation-name: cloudOvercast;
+	animation-delay: 128s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudOvercast:nth-of-type(9) {
+	animation-name: cloudOvercast;
+	animation-delay: 146s;
+	animation-duration: 120s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+}
+
+.cloudNight {
+	filter: brightness(30%);
+}
+
+*/

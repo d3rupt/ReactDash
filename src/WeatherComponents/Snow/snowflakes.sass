@@ -1,0 +1,66 @@
+.lightSnowContainer {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background: rgba(255, 255, 255, 0.5);
+	backdrop-filter: blur(2.5px);
+}
+
+svg {
+	position: absolute;
+	border: 1px solid red;
+	height: 100%;
+	width: 100%;
+}
+
+.lightSnowflake {
+	position: absolute;
+	background: white;
+	box-shadow: 0 0 3px 1px white;
+	border-radius: 50%;
+}
+
+$snowflakes: 200;
+
+@for $i from 1 through $snowflakes {
+  $top: -10%;
+  $left: random(100) * 1%;
+  $delay: random(20) - 1s;
+  $duration: random(30) + 20s;
+  $size: (random(24)+10);
+
+  .snowflakeHeavy:nth-of-type(#{$i}) {
+    animation-name: snowflake-#{$i};
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-iteration-count: infinite;
+    left: $left;
+    top: $top;
+		width: $size;
+		height: $size;
+		r: $size / 2;
+    }
+  }
+  @keyframes snowflake-#{$i} {
+    0% {
+      transform: translateY(0%);
+      left: $left;
+      top: $top;
+    }
+    25% {
+      transform: translateX(-100%);
+    }
+    50% {
+      transform: translateX(400%);
+    }
+    75% {
+      transform: translateX(-300%);
+      opacity: 1;
+    }
+    100% {
+      left: $left;
+      opacity: 0;
+      transform: translateY(600px);
+    }
+  }
+}

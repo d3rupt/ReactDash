@@ -1,0 +1,184 @@
+.leavesContainer {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  /*animation: leafContainer 5s linear;*/
+}
+.leafContainer {
+  height: 100%;
+  position: absolute;
+  /*border: 1px solid red;*/
+  animation: leafContainer;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+}
+@keyframes leafContainer {
+  100% {
+    transform: translateX(80vw);
+  }
+}
+.leaf {
+  animation-duration: 2s;
+  /*background: url('leafFallOrange.png');*/
+  background: url('leaf.png');
+
+  background-size: contain;
+  position: absolute;
+  width: 2vh;
+  height: 2vh;
+  left: -2vh;
+  animation-timing-function: cubic-bezier(.61,.42,.7,.54);
+}
+
+.leafContainer:nth-of-type(1) .leaf {
+	top: 63%;
+  animation-name: leaf2;
+  animation-iteration-count: 1;
+  animation-delay: 1s;
+  opacity: 1 !important;
+}
+
+.leafContainer:nth-of-type(2) .leaf {
+	top: 18%;
+  animation-name: leaf2;
+  animation-iteration-count: 1;
+  animation-delay: 1.5s;
+}
+
+.leafContainer:nth-of-type(3) .leaf {
+	top: 46%;
+  animation-name: leaf3;
+  animation-delay: 2.5s;
+}
+
+.leafContainer:nth-of-type(4) .leaf {
+	top: 32%;
+  animation-name: leaf1;
+  animation-delay: 4s;
+}
+
+.leafContainer:nth-of-type(5) .leaf {
+	top: 80%;
+  animation-name: leaf2;
+  animation-delay: 5s;
+}
+
+.leafContainer:nth-of-type(6) .leaf {
+	top: 4%;
+  animation-name: leaf3;
+  animation-iteration-count: 1;
+  animation-delay: 6.5s;
+}
+
+.leafContainer:nth-of-type(7) .leaf {
+	top: 4%;
+  animation-name: leaf1;
+  animation-iteration-count: 1;
+  animation-delay: 7s;
+
+}
+
+.leafContainer:nth-of-type(8) .leaf {
+	top: 85%;
+  animation-name: leaf2;
+  animation-iteration-count: 1;
+  animation-delay: 8s;
+}
+
+.leafContainer:nth-of-type(9) .leaf {
+	top: 41%;
+  animation-name: leaf3;
+  animation-iteration-count: 1;
+  animation-delay: 9.5s;
+}
+
+.leafContainer:nth-of-type(10) .leaf {
+	top: 78%;
+  top: 44%;
+  animation-name: leaf1;
+  animation-delay: 10s;
+}
+
+.leafContainer:nth-of-type(1) {
+  animation-delay: 1s;
+}
+
+.leafContainer:nth-of-type(2) {
+  animation-delay: 1.5s;
+}
+
+.leafContainer:nth-of-type(3) {
+    animation-delay: 2.5s;
+}
+
+.leafContainer:nth-of-type(4) {
+    animation-delay: 4s;
+}
+
+.leafContainer:nth-of-type(5) {
+    animation-delay: 5s;
+
+}
+
+.leafContainer:nth-of-type(6) {
+    animation-delay: 6.5s;
+}
+
+.leafContainer:nth-of-type(7) {
+  animation-delay: 7s;
+}
+
+.leafContainer:nth-of-type(8) {
+  animation-delay: 8s;
+}
+
+.leafContainer:nth-of-type(9) {
+  animation-delay: 9.5s;
+}
+.leafContainer:nth-of-type(10) {
+  animation-delay: 10s;
+}
+
+@keyframes leaf1 {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-10vh) rotate(10deg);
+  }
+}
+@keyframes leaf2 {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(2.5vh) rotate(360deg);
+  }
+  100% {
+    transform: translateY(-2vh) rotate(405deg);
+  }
+}
+@keyframes leaf3 {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  45% {
+    transform: translateY(-2.5vh) rotate(-45deg);
+  }
+  100% {
+    transform: translateY(5vh) rotate(270deg);
+  }
+}
+/*@keyfames leaf2 {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(200vh);
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+  }
+}*/

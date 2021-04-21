@@ -1,0 +1,347 @@
+.rainTorr {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	bottom: 0;
+	top: 0;
+  backdrop-filter: brightness(65%) grayscale(60%);
+}
+.rainDropsTorr, .rainDrops2Torr, .rainDrops3Torr, .rainDrops4Torr, .rainDrops5Torr {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  top: -100%;
+  -webkit-animation: rainfall 0.5s linear infinite;
+  animation: rainfall 0.5s linear infinite;
+  animation-delay: 0.1s;
+  will-change: transform;
+}
+.rainDrops2Torr {
+  animation-delay: 0.75s;
+  left: -25%;
+}
+.rainDrops3Torr {
+  animation-delay: 0.5s;
+  left: 15%;
+}
+.rainDrops4Torr {
+  animation-delay: 0.2s;
+  left: -20%;
+}
+.rainDrops5Torr {
+  animation-delay: 0.2s;
+}
+@keyframes rainfall {
+  to {
+    transform: translate3d(5%, 200%, 0);
+  }
+}
+.dropTorr {
+  position: absolute;
+	height: 30px;
+	width: 1.5px;
+  border-radius: 50%;
+  background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0.5));
+  transform: rotate(355deg);
+}
+
+.dropTorr:nth-of-type(1) {
+	top: 1%;
+	left: 18%;
+}
+
+.dropTorr:nth-of-type(2) {
+	top: 48%;
+	left: 96%;
+}
+
+.dropTorr:nth-of-type(3) {
+	top: 5%;
+	left: 37%;
+}
+
+.dropTorr:nth-of-type(4) {
+	top: 85%;
+	left: 21%;
+}
+
+.dropTorr:nth-of-type(5) {
+	top: 22%;
+	left: 67%;
+}
+
+.dropTorr:nth-of-type(6) {
+	top: 97%;
+	left: 27%;
+}
+
+.dropTorr:nth-of-type(7) {
+	top: 54%;
+	left: 82%;
+}
+
+.dropTorr:nth-of-type(8) {
+	top: 92%;
+	left: 16%;
+}
+
+.dropTorr:nth-of-type(9) {
+	top: 99%;
+	left: 39%;
+}
+
+.dropTorr:nth-of-type(10) {
+	top: 14%;
+	left: 17%;
+}
+
+.dropTorr:nth-of-type(11) {
+	top: 36%;
+	left: 62%;
+}
+
+.dropTorr:nth-of-type(12) {
+	top: 43%;
+	left: 27%;
+}
+
+.dropTorr:nth-of-type(13) {
+	top: 41%;
+	left: 32%;
+}
+
+.dropTorr:nth-of-type(14) {
+	top: 22%;
+	left: 28%;
+}
+
+.dropTorr:nth-of-type(15) {
+	top: 55%;
+	left: 6%;
+}
+
+.dropTorr:nth-of-type(16) {
+	top: 100%;
+	left: 90%;
+}
+
+.dropTorr:nth-of-type(17) {
+	top: 18%;
+	left: 95%;
+}
+
+.dropTorr:nth-of-type(18) {
+	top: 17%;
+	left: 43%;
+}
+
+.dropTorr:nth-of-type(19) {
+	top: 100%;
+	left: 41%;
+}
+
+.dropTorr:nth-of-type(20) {
+	top: 55%;
+	left: 27%;
+}
+
+.dropTorr:nth-of-type(21) {
+	top: 65%;
+	left: 35%;
+}
+
+.dropTorr:nth-of-type(22) {
+	top: 17%;
+	left: 20%;
+}
+
+.dropTorr:nth-of-type(23) {
+	top: 74%;
+	left: 62%;
+}
+
+.dropTorr:nth-of-type(24) {
+	top: 47%;
+	left: 40%;
+}
+
+.dropTorr:nth-of-type(25) {
+	top: 71%;
+	left: 20%;
+}
+
+.dropTorr:nth-of-type(26) {
+	top: 7%;
+	left: 87%;
+}
+
+.dropTorr:nth-of-type(27) {
+	top: 93%;
+	left: 82%;
+}
+
+.dropTorr:nth-of-type(28) {
+	top: 39%;
+	left: 17%;
+}
+
+.dropTorr:nth-of-type(29) {
+	top: 49%;
+	left: 98%;
+}
+
+.dropTorr:nth-of-type(30) {
+	top: 72%;
+	left: 76%;
+}
+
+.dropTorr:nth-of-type(31) {
+	top: 42%;
+	left: 69%;
+}
+
+.dropTorr:nth-of-type(32) {
+	top: 21%;
+	left: 32%;
+}
+
+.dropTorr:nth-of-type(33) {
+	top: 1%;
+	left: 3%;
+}
+
+.dropTorr:nth-of-type(34) {
+	top: 99%;
+	left: 4%;
+}
+
+.dropTorr:nth-of-type(35) {
+	top: 48%;
+	left: 93%;
+}
+
+.dropTorr:nth-of-type(36) {
+	top: 35%;
+	left: 66%;
+}
+
+.dropTorr:nth-of-type(37) {
+	top: 21%;
+	left: 71%;
+}
+
+.dropTorr:nth-of-type(38) {
+	top: 28%;
+	left: 64%;
+}
+
+.dropTorr:nth-of-type(39) {
+	top: 14%;
+	left: 43%;
+}
+
+.dropTorr:nth-of-type(40) {
+	top: 95%;
+	left: 40%;
+}
+
+.dropTorr:nth-of-type(41) {
+	top: 92%;
+	left: 47%;
+}
+
+.dropTorr:nth-of-type(42) {
+	top: 92%;
+	left: 1%;
+}
+
+.dropTorr:nth-of-type(43) {
+	top: 95%;
+	left: 36%;
+}
+
+.dropTorr:nth-of-type(44) {
+	top: 89%;
+	left: 1%;
+}
+
+.dropTorr:nth-of-type(45) {
+	top: 71%;
+	left: 8%;
+}
+
+.dropTorr:nth-of-type(46) {
+	top: 94%;
+	left: 89%;
+}
+
+.dropTorr:nth-of-type(47) {
+	top: 57%;
+	left: 56%;
+}
+
+.dropTorr:nth-of-type(48) {
+	top: 67%;
+	left: 45%;
+}
+
+.dropTorr:nth-of-type(49) {
+	top: 92%;
+	left: 42%;
+}
+
+.dropTorr:nth-of-type(50) {
+	top: 60%;
+	left: 8%;
+}
+
+.dropTorr:nth-of-type(51) {
+	top: 8%;
+	left: 98%;
+}
+
+.dropTorr:nth-of-type(52) {
+	top: 6%;
+	left: 42%;
+}
+
+.dropTorr:nth-of-type(53) {
+	top: 38%;
+	left: 68%;
+}
+
+.dropTorr:nth-of-type(54) {
+	top: 27%;
+	left: 65%;
+}
+
+.dropTorr:nth-of-type(55) {
+	top: 89%;
+	left: 39%;
+}
+
+.dropTorr:nth-of-type(56) {
+	top: 9%;
+	left: 100%;
+}
+
+.dropTorr:nth-of-type(57) {
+	top: 84%;
+	left: 3%;
+}
+
+.dropTorr:nth-of-type(58) {
+	top: 60%;
+	left: 98%;
+}
+
+.dropTorr:nth-of-type(59) {
+	top: 38%;
+	left: 32%;
+}
+
+.dropTorr:nth-of-type(60) {
+	top: 71%;
+	left: 64%;
+}

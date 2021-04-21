@@ -1,0 +1,279 @@
+* {
+  box-sizing: border-box;
+}
+.weatherBackground {
+  /*opacity: 0.75;*/
+  position: absolute;
+  height: 30%;
+  width: 70%;
+  bottom: 1%;
+  right: 1%;
+}
+
+.Tiles {
+  backdrop-filter: blur(2.5px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.houseContainer {
+  display: flex;
+  justify-content: center;
+  height: 75px;
+  width: 75px;
+  z-index: 0;
+  position: absolute;
+  bottom: 5%;
+  border: none;
+  transition: all 3s;
+}
+.houseGround {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: -65px;
+  height: 75px;
+  width: 250px;
+  z-index: -10;
+  border-radius: 50%;
+}
+#winter {
+  background: rgb(255,255,255);
+}
+.snowman {
+  background: url('snowman.png');
+  z-index: 100;
+  position: absolute;
+  top: -35%;
+  left: 15%;
+  height: 60%;
+  width: 15%;
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform: rotate(-10deg);
+}
+#spring {
+  background:rgb(28, 172, 0);
+}
+#spring::after {
+  content: '';
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background-image: url('shortGrass.png');
+}
+.shortGrass {
+  position: absolute;
+  top: -10%;
+  width: 80%;
+  height: 60%;
+  background-image: url('shortGrass.png');
+  background-size: contain;
+}
+
+#summer {
+  background:rgb(28, 172, 0);
+  filter: brightness(75%);
+}
+.tallGrass {
+  position: absolute;
+  top: -15%;
+  width: 80%;
+  height: 50%;
+  background-image: url('tallGrass.png');
+  background-size: contain;
+}
+.flowers {
+  position: absolute;
+  top: 5%;
+  width: 100%;
+  height: 75%;
+  background-image: url('flowers.png');
+  z-index: 300;
+  background-size: contain;
+  background-repeat: space;
+}
+.garden {
+  margin-top: 10%;
+  position: absolute;
+  top: -15%;
+  width: 95%;
+  height: 60%;
+  background-image: url('garden.png');
+  z-index: 300;
+  background-size: contain;
+  background-repeat: space;
+}
+.leaves {
+  position: absolute;
+  top: -15%;
+  left: -2.5%;
+  width: 100%;
+  height: 100%;
+  background-image: url('leaves.png');
+  z-index: 300;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#fall {
+  background: rgb(161, 118, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#fall::after {
+  content: '';
+  bottom: 70%;
+  position: absolute;
+  height: 60%;
+  width: 75%;
+  background: url('tallGrass.png');
+  filter: contrast(30%);
+  background-size: contain;
+  background-repeat: repeat;
+}
+
+.house {
+  height: 100%;
+  width: 100%;
+  background-image: url('./pixelhouse.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  transition: all 3s;
+  z-index: -1;
+}
+.houseNight {
+  filter: brightness(40%);
+}
+.houseLight {
+  z-index: 0;
+  opacity: 0.75;
+  content: '';
+  position: absolute;
+  bottom: 19%;
+  left: 46.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1vh;
+  width: 1vh;
+  border-radius: 50%;
+  filter: brightness(100%) !important;
+  /*animation: flicker 0.37s infinite;*/
+}
+.hLight {
+  position: absolute;
+  height: 5px;
+  width: 5px;
+  background: rgba(255,255,0,0.5);
+}
+.lightYellow {
+  box-shadow: 0 0 10px 10px rgba(255,255,0,0.75);
+  background: rgba(255,255,0,0.5);
+  border-radius: 50%;
+  animation: flicker 0.45s infinite;
+}
+.lightOrange {
+  box-shadow: 0 0 10px 10px rgba(255,165,0,0.75);
+  background: rgba(255,165,0,0.75);
+  border-radius: 50%;
+  animation: flicker 0.5s reverse infinite;
+}
+@keyframes flicker {
+  0% {
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.75;
+  }
+  35% {
+    opacity: 0.25;
+  }
+  65% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.75;
+  }
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  color: white;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.15);
+  /*color: #333;
+  background: rgba(255,255,255,0.25);
+  background-image: url('waterdrops.png');
+  */
+  backdrop-filter: blur(2.5px);
+   background-size: cover;
+  border-radius: 2.5%;
+  width: 47.5%;
+  height: 100%;
+  padding: 5% 0;
+  transition: all 3s;
+}
+
+.tileCold {
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.25), inset 0 0 25px 10px rgba(255,255,255,0.75);
+}
+.tileDate {
+  font-weight: 600;
+}
+
+.tile img {
+  height: 30%;
+  opacity: 0.5;
+  filter: grayscale(50%);
+}
+.tile p {
+  margin: 0 0;
+}
+.nowWeather {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  top: 12.5%;
+  right: 27.5%;
+  width: 15%;
+  height: 50%;
+}
+.nowWeather .tile {
+  width: 100%;
+  height: 100%;
+}
+.nowWeather p {
+  font-size: 0.8em;
+}
+.forecast {
+  padding: 0;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  right: 1.25%;
+  top: 15%;
+  width: 25%;
+  height: 45%;
+}
+.forecast p {
+  font-size: 0.7em;
+}
+/*http://api.mediastack.com/v1/news?access_key=035f2de5708c16a0ce9bcc272d9b78bb&countries=ca&language=en*/

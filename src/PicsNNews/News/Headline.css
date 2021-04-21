@@ -1,0 +1,83 @@
+.newsHeadline {
+  display: flex;
+  background: rgba(0,0,0,0.5);
+  color: rgba(255,255,255,0.75);
+  height: 30%;
+  width: 95%;
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.25);
+  border-radius: 1%;
+  transition: all 1s;
+  /*animation: newsOpacity1 1s linear forwards;*/
+}
+.headline {
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  justify-content: space-between;
+  width: 60%;
+  height: 100%;
+  font-size: 0.75em;
+}
+.nameSubreddit {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 75%;
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.3em;
+  line-height: 1em;
+}
+.nothumb, .thumb {
+  height: 99%;
+  width: 100%;
+  /*object-fit: contain;*/
+  background: rgba(0,0,0,0.25);
+}
+.headlineSubreddit {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 15%;
+  font-size: 0.75em;
+}
+.headlineSubreddit p, .nameSubreddit p {
+  margin: 0;
+}
+.newsThumbnail {
+  width: 40%;
+  height: 100%;
+}
+
+.nothumb {
+  width: 100%;
+  height: 100%;
+  background: url('thumbnail.jpg');
+}
+.thumbContainer {
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.headlineNight > * {
+  background: rgba(0,0,0,0.75) !important;
+  color: rgba(255,255,255,0.75) !important;
+}
+
+@keyframes newsOpacity1 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes newsOpacity2 {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

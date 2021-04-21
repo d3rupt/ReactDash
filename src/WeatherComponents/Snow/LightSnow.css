@@ -1,0 +1,208 @@
+.snowLight {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	bottom: 0;
+	top: 0;
+}
+.snowflakesLight, .snowflakes2Light {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  top: -105%;
+  -webkit-animation: snowLight 7s linear infinite;
+  animation: snowLight 7s linear infinite;
+}
+.snowflakes2Light {
+  animation-delay: 4.5s;
+}
+@keyframes snowLight {
+	0% {
+		transform: translate3d(0,0,0);
+	}
+	25% {
+		transform: translate3d(20px,50%,0);
+	}
+	50% {
+		transform: translate3d(-5px,100%,0);
+	}
+	75% {
+		transform: translate3d(10px,150%,0);
+	}
+  100% {
+    transform: translate3d(-10px, 200%, 0);
+  }
+}
+@keyframes icePellets {
+	100% {
+		transform: translate3d(5%, 200%, 0);
+	}
+}
+.lightSnow {
+	box-shadow: 0 0 2px 2px rgba(255,255,255,0.75);
+}
+.icePellets {
+	box-shadow: 0;
+	width: 2px;
+	height: 2px;
+	background: rgb(255,255,255);
+}
+
+.flakeLight {
+  position: absolute;
+	height: 3px;
+	width: 3px;
+	border-radius: 50%;
+	background: rgba(255,255,255,0.75);
+}
+
+.flakeLight:nth-of-type(1) {
+	left: 82%;
+	top: 100%;
+}
+
+.flakeLight:nth-of-type(2) {
+	left: 12%;
+	top: 62%;
+}
+
+.flakeLight:nth-of-type(3) {
+	left: 33%;
+	top: 12%;
+}
+
+.flakeLight:nth-of-type(4) {
+	left: 56%;
+	top: 17%;
+}
+
+.flakeLight:nth-of-type(5) {
+	left: 91%;
+	top: 36%;
+}
+
+.flakeLight:nth-of-type(6) {
+	left: 98%;
+	top: 51%;
+}
+
+.flakeLight:nth-of-type(7) {
+	left: 17%;
+	top: 11%;
+}
+
+.flakeLight:nth-of-type(8) {
+	left: 68%;
+	top: 72%;
+}
+
+.flakeLight:nth-of-type(9) {
+	left: 3%;
+	top: 85%;
+}
+
+.flakeLight:nth-of-type(10) {
+	left: 79%;
+	top: 10%;
+}
+
+.flakeLight:nth-of-type(11) {
+	left: 60%;
+	top: 7%;
+}
+
+.flakeLight:nth-of-type(12) {
+	left: 43%;
+	top: 96%;
+}
+
+.flakeLight:nth-of-type(13) {
+	left: 10%;
+	top: 53%;
+}
+
+.flakeLight:nth-of-type(14) {
+	left: 69%;
+	top: 86%;
+}
+
+.flakeLight:nth-of-type(15) {
+	left: 62%;
+	top: 61%;
+}
+
+.flakeLight:nth-of-type(16) {
+	left: 31%;
+	top: 18%;
+}
+
+.flakeLight:nth-of-type(17) {
+	left: 59%;
+	top: 2%;
+}
+
+.flakeLight:nth-of-type(18) {
+	left: 5%;
+	top: 87%;
+}
+
+.flakeLight:nth-of-type(19) {
+	left: 81%;
+	top: 89%;
+}
+
+.flakeLight:nth-of-type(20) {
+	left: 90%;
+	top: 57%;
+}
+
+.flakeLight:nth-of-type(21) {
+	left: 79%;
+	top: 86%;
+}
+
+.flakeLight:nth-of-type(22) {
+	left: 94%;
+	top: 52%;
+}
+
+.flakeLight:nth-of-type(23) {
+	left: 24%;
+	top: 66%;
+}
+
+.flakeLight:nth-of-type(24) {
+	left: 88%;
+	top: 85%;
+}
+
+.flakeLight:nth-of-type(25) {
+	left: 60%;
+	top: 6%;
+}
+
+.flakeLight:nth-of-type(26) {
+	left: 81%;
+	top: 11%;
+}
+
+.flakeLight:nth-of-type(27) {
+	left: 25%;
+	top: 69%;
+}
+
+.flakeLight:nth-of-type(28) {
+	left: 79%;
+	top: 82%;
+}
+
+.flakeLight:nth-of-type(29) {
+	left: 40%;
+	top: 65%;
+}
+
+.flakeLight:nth-of-type(30) {
+	left: 30%;
+	top: 84%;
+}

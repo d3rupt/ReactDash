@@ -1,0 +1,51 @@
+.App {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: all 10s;
+  /*opacity: 0.33;*/
+  /*background: url('https://wallpaperaccess.com/full/2155719.jpg');*/
+  /*  background-image: url('https://images.wallpapersden.com/image/download/landscape-pixel-art_bGhnaGeUmZqaraWkpJRmbmdlrWZlbWU.jpg');*/
+}
+.AppNight {
+  opacity: 0.75;
+}
+
+#calendarModal {
+  position: absolute;
+  z-index: 100;
+  height: 50%;
+  width: 50%;
+  bottom: 25%;
+  left: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: white;
+}
+
+#calendarModal input {
+  width: 25%;
+}
+#calendarModal p {
+  text-align: center;
+}
+#calendarModalAnswers {
+  margin-top: 10%;
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+}
+#calendarModalAnswers div {
+  border: 1px solid rgba(255,255,255,0.25);
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

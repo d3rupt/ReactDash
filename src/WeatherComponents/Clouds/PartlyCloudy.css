@@ -1,0 +1,200 @@
+#clouds {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+}
+.cloud {
+	transition: all 3s;
+}
+.blurCloud {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	bottom: 0;
+	left: 0;
+}
+.cloudsContainerPartly {
+	position: absolute;
+	height: 110%;
+	width: 100%;
+	bottom: 0;
+	/*background: url('clodus60fps.gif');*/
+	background-size: cover;
+	opacity: 0.8;
+}
+
+.cloudPartly {
+	background: rgba(0,0,0,0);
+	filter: brightness(85%);
+	position: absolute;
+	background-image: url("clouds.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	transition: all 3s;
+}
+
+.cloudPartly:nth-of-type(1) {
+	animation-name: cloudPartly-1;
+	animation-delay: -6s;
+	animation-duration: 62s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	top: 13%;
+	left: -51%;
+	height: 51%;
+	width: 51%;
+}
+
+@keyframes cloudPartly-1 {
+	0% {
+		transform: translate3d(0,0,0);
+	}
+	100% {
+		transform: translate3d(120vw,0,0);
+	}
+}
+
+.cloudPartly:nth-of-type(2) {
+	animation-name: cloudPartly-2;
+	animation-delay: -18s;
+	animation-duration: 66s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	top: 14%;
+	left: -41%;
+	height: 41%;
+	width: 41%;
+}
+
+@keyframes cloudPartly-2 {
+	0% {
+
+		transform: translateX(0);
+	}
+
+	100% {
+
+		transform: translateX(120vw);
+	}
+}
+
+.cloudPartly:nth-of-type(3) {
+	animation-name: cloudPartly-3;
+	animation-delay: -12s;
+	animation-duration: 68s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	top: 1%;
+	left: -27%;
+	height: 27%;
+	width: 27%;
+}
+
+@keyframes cloudPartly-3 {
+	0% {
+
+		transform: translateX(0);
+	}
+	100% {
+
+		transform: translateX(120vw);
+	}
+}
+
+.cloudPartly:nth-of-type(4) {
+	animation-name: cloudPartly-4;
+	animation-delay: -31s;
+	animation-duration: 55s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	top: 8%;
+	left: -55%;
+	height: 55%;
+	width: 55%;
+}
+
+@keyframes cloudPartly-4 {
+	0% {
+
+		transform: translateX(0);
+	}
+	100% {
+
+		transform: translateX(120vw);
+	}
+}
+
+.cloudPartly:nth-of-type(5) {
+	animation-name: cloudPartly-5;
+	animation-delay: -21s;
+	animation-duration: 83s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	top: 4%;
+	left: -50%;
+	height: 50%;
+	width: 50%;
+}
+
+@keyframes cloudPartly-5 {
+	0% {
+
+		transform: translateX(0);
+	}
+	100% {
+
+		transform: translateX(120vw);
+	}
+}
+
+.cloudPartly:nth-of-type(6) {
+	animation-name: cloudPartly-6;
+	animation-delay: -40s;
+	animation-duration: 87s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	top: 20%;
+	left: -41%;
+	height: 41%;
+	width: 41%;
+}
+
+@keyframes cloudPartly-6 {
+	0% {
+
+		transform: translateX(0);
+	}
+	100% {
+
+		transform: translateX(120vw);
+	}
+}
+
+.cloudPartly:nth-of-type(7) {
+	animation-name: cloudPartly-7;
+	animation-delay: -33s;
+	animation-duration: 80s;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	top: 13%;
+	left: -42%;
+	height: 42%;
+	width: 42%;
+}
+
+@keyframes cloudPartly-7 {
+	0% {
+
+		transform: translateX(0);
+	}
+	100% {
+
+		transform: translateX(120vw);
+	}
+}
+
+.cloudNight {
+	filter: brightness(20%);
+}

@@ -1,0 +1,320 @@
+.sky {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 10s;
+}
+.skyDay {
+  background: white;
+}
+.skyNight {
+  background: black;
+}
+.testStar {
+  position: absolute;
+  bottom: 25%;
+  right: 10%;
+  height: 50px;
+  width: 50px;
+  background: white;
+}
+
+.day {
+  display:none;
+}
+#sky {
+  padding: -10%;
+  z-index: 0;
+  /*background: rgba(4, 0, 83, 0.25);
+  height: 200px;
+  width: 200px;*/
+  height: 37.5vh;
+  width: 37.5vh;
+  margin-top: 7.5%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  transition: all 10s;
+}
+.Sun, .Moon {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+}
+.Sun {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  top: 10px;
+  background: #ffff1a;
+}
+
+.sunColor {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  background: #ffff1a;
+  opacity: 0;
+  transition: opacity 10s;
+}
+#sunColorSunriseEndSunriseStart {
+  box-shadow: 0 0 25px 25px yellow, 0 0 50px 50px rgba(255,165,0,0.75);
+}
+#sunColorSunriseSunset {
+  box-shadow: 0 0 25px 25px yellow, 0 0 100px 100px rgba(255,165,0,0.75);
+}
+#sunNoon {
+  box-shadow: 0 0 20px 20px yellow;
+}
+#sunColorGoldens {
+  box-shadow: 0 0 30px 30px yellow;
+
+}
+.Moon {
+  position: relative;
+  bottom: 10px;
+  /*background: lightgrey;*/
+  transition: all 10s;
+  background-size: cover;
+  background-position: center;
+}
+.moonPhase {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+
+}
+.newMoon {
+  background-image: none;
+}
+.waxingGibbous {
+  background-image: url('gibbous.png');
+  transform: scaleX(-1);
+}
+.waningGibbous {
+  background-image: url('gibbous.png');
+}
+.fullMoon {
+  background-image: url('new.png');
+}
+.waningCrescent {
+  background-image: url('crescent.png');
+}
+.waxingCrescent {
+  background-image: url('crescent.png');
+  transform: scaleX(-1);
+}
+.firstQuarter {
+  background-image: url('quarter.png');
+}
+.thirdQuarter {
+  background-image: url('quarter.png');
+  transform: scaleX(-1);
+}
+/*General opacity classes*/
+.opacity0 {
+  opacity: 0 !important;
+}
+.opacity1 {
+  opacity: 0.25 !important;
+}
+.opacity2 {
+  opacity: 0.5 !important;
+}
+.opacity3 {
+  opacity: 0.75 !important;
+}
+.opacity4 {
+  transition: all 1s;
+  opacity: 1 !important;
+}
+
+/* sky color anims */
+#night, #nightEnd {
+  background: rgba(0, 10, 62, 0.75);
+}
+#nadir {
+  background: rgba(0, 10, 62, 0.5);
+}
+#nadir::after, #night::after, #nightEnd::after {
+  content: '';
+  background: url('galaxy.png');
+  background-size: cover;
+  background-position: center top;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  filter: brightness(70%);
+}
+#dawn {
+  background: linear-gradient(180deg, rgba(0,10,62,0.75) 60%, rgba(69, 148, 255, 0.75) 75%, rgba(255,179,198,0.75) 99%, rgba(255, 145, 0, 0.75) 100%);
+}
+.stars {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('stars.png');
+  background-size: contain;
+  opacity: 0.5;
+}
+#sunrise {
+  background: linear-gradient(180deg, rgba(0,10,62,0.75) 1%, rgba(69, 148, 255, 0.75) 34%, rgba(255,179,198,0.95) 80%);
+}
+#sunrise::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /*background: rgba(255, 254, 178, 0.2);*/
+  background: rgba(255, 130, 0, 0.15);
+}
+#sunriseEnd {
+  background: linear-gradient(180deg, rgba(69, 148, 255, 0.75) 40%, rgba(255,179,198,1) 95%, rgba(255, 255, 0, 0.75) 100%);
+}
+#sunriseEnd::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /*background: rgba(255, 254, 178, 0.2);*/
+  background: rgba(255, 224, 153, 0.25);
+}
+#goldenHourEnd {
+  background: linear-gradient(180deg, rgba(69, 148, 255, 0.75) 50%, rgba(255,254,178,0.75) 80%);
+}
+#goldenHourEnd::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  /*background: rgba(255, 254, 178, 0.2);*/
+  background: rgba(255, 232, 178, 0.2);
+}
+#noon {
+  background: rgba(69, 148, 255, 0.75);
+}
+
+@keyframes opacityForward {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes opacityReverse {
+  0% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.skyComponent, .skyComponentNadir {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 10s;
+}
+.skyComponent::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  filter:blur(30px);
+}
+#skyBlur {
+  opacity: 1;
+}
+#backgrounds {
+  height: 100vh;
+  width: 100vw;
+}
+.background {
+  position: absolute;
+  transition: all 3s;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+}
+.dayBackground {
+  background: url('assets/Backgrounds/day1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.nightBackground {
+  background: url('assets/Backgrounds/night1.jpg');
+}
+.sunsetBackground {
+  background: url('assets/Backgrounds/sunset.png');
+}
+.sunriseBackground {
+  background: url('assets/Backgrounds/sunrise.jpg');
+}
+.duskBackground {
+  background: url('assets/Backgrounds/dusk.jpg');
+}
+.dawnBackground {
+  background: url('assets/Backgrounds/dawn.jpg');
+}
+.nadir { transform: rotate(180deg) !important ;}
+.between1 { transform: rotate(185deg) !important ;}
+.nightEnd { transform: rotate(190deg) !important ;}
+.between2 { transform: rotate(185deg) !important ;}
+.nauticalDawn { transform: rotate(185deg) !important ;}
+.dawn { transform: rotate(185deg) !important ;}
+.between3 { transform: rotate(205deg) !important ;}
+.sunrise { transform: rotate(230deg) !important ;}
+.between4 { transform: rotate(235deg) !important ;}
+.sunriseEnd { transform:rotate(240deg) !important ;}
+.between5 { transform: rotate(255deg) !important ;}
+.goldenHourEnd { transform: rotate(270deg) !important ;}
+.between6 { transform: rotate(315deg) !important ;}
+.solarNoon { transform: rotate(0deg) !important ;}
+.between7 { transform: rotate(45deg) !important ;}
+.goldenHour { transform: rotate(90deg) !important ;}
+.between8 { transform: rotate(100deg) !important ;}
+.sunsetStart { transform: rotate(110deg) !important ;}
+.between9 { transform: rotate(130deg) !important ;}
+.sunset { transform: rotate(150deg) !important ;}
+.between10 { transform: rotate(163deg) !important ;}
+.dusk { transform: rotate(175deg) !important ;}
+.nauticalDusk { transform: rotate(175deg) !important ;}
+.between11 { transform: rotate(175deg) !important ;}
+.night { transform: rotate(175deg) !important ;}

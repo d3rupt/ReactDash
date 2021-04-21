@@ -1,0 +1,30 @@
+.clock {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 5%;
+  left: 0;
+  height: 50%;
+  width: 50%;
+  color: white;
+}
+.timeDate {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  height: 40%;
+  width: 100%;
+  padding-left: 5%;
+}
+.timeTime {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 60%;
+  width: 100%;
+  font-size: 4em;
+  padding-left: 2.5%;
+}
+.clockNight {
+  color: rgba(255,255,255,0.5);
+}

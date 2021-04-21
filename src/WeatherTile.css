@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+.tileNight  {
+  background: rgba(0,0,0,0.5) !important;
+  font-weight: 600 !important;
+  color: rgba(255,255,255,0.5) !important;
+}
+.icicles {
+  position: absolute;
+  bottom: -25%;
+  height: 25%;
+  width: 100%;
+  background: url('icicles.png');
+  background-size: 75%;
+  background-position: 0 70%;
+}
+
+.tempNow {
+  font-size: 1.5em !important;
+}
+.tempFC {
+  font-size: 1.1em !important;
+}
+.tileBackground {
+  z-index: 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+}
+.tileRain {
+  background: url('waterdrops.png');
+  background-size: contain;
+}
+.tileSnow {
+  background: url('frost.png');
+  background-size: cover;
+  opacity: 0.25;
+}

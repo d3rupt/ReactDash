@@ -1,0 +1,55 @@
+.cloudsContainerWindy {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	backdrop-filter: brightness(80%);
+}
+
+.cloudWindy {
+	height: 40vh;
+	width: 40vh;
+	border-radius: 50%;
+	background: white;
+  /*box-shadow: 0px 0px 3px 5px white;*/
+	transform: scale(1.5, 1.5);
+}
+
+.animationWindy1, .animationWindy2, .animationWindy3 {
+	width: 400vh;
+	position: relative;
+  display: flex;
+	filter: brightness(25%);
+}
+.animationCloudsWindyFront, .animationCloudsWindyMid, .animationCloudsWindyBack {
+	margin: 0;
+	right: 0;
+	position: absolute;
+	height: 40vh;
+	width: 400vh;
+	display: flex;
+	justify-content: center;
+}
+.animationCloudsWindyFront {
+	z-index: 3;
+	top: -27vh;
+	animation: cloudtest 10s linear infinite normal running;
+}
+.animationCloudsWindyMid {
+	z-index: 2;
+	top: -23vh;
+	filter: brightness(90%);
+	animation: cloudtest 15s linear infinite normal running;
+}
+.animationCloudsWindyBack {
+	z-index: 1;
+	top: -20vh;
+	filter: brightness(80%);
+	animation: cloudtest 21s linear infinite normal running;
+
+}
+
+@keyframes cloudtest {
+  100% {
+    transform: translate3d(200vh, 0, 0);
+  }
+}

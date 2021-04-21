@@ -1,0 +1,51 @@
+.cloudsContainerPartly {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	backdrop-filter: brightness(85%);
+}
+
+.cloudPartly {
+	filter: brightness(85%);
+	position: absolute;
+	background-image: url("clouds.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	left: -25%;
+}
+$clouds: 7;
+
+@for $i from 1 through $clouds {
+ $top: random(20) * 1%;
+
+  // Animation delay for the cloud
+  $delay: random(30) - 1s;
+
+  // Floating span for the cloud
+  $duration: random(40) + 30s;
+
+  // Size of the cloud
+  $size: (random(10)+15) * 1%;
+
+  // Length of left in animation
+  $lenleft: (random(1)+2) * 1%;
+
+  .cloudPartly:nth-of-type(#{$i}) {
+    animation-name: cloud-#{$i};
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in;
+    top: $top;
+    height: $size;
+    width: $size;
+    }
+  @keyframes cloud-#{$i} {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(130vw);
+    }
+  }
+}

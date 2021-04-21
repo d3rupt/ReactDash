@@ -1,0 +1,14 @@
+To Do:
+
+-finish weathers
+-fix sky & sun colors x
+-migrate to openweatherapi
+-calendar api
+-gather pics
+-day/night cycle for wallpapers, calendar x
+-isday from app level
+-idle animations
+-video
+-stars
+-tile weather effects
+

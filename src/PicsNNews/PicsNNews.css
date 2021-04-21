@@ -1,0 +1,40 @@
+/*.App {
+  opacity: 0.5;
+}*/
+.picsNNews {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  height: 63%;
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  backdrop-filter: blur(2.5px);
+}
+
+.Pics {
+  height: 100%;
+  width: 59.5%;
+  position: relative;
+  backdrop-filter: blur(2.5px);
+  background-color: rgba(255,255,255,0.33);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.News {
+  border: 1px solid white;
+  height: 100%;
+  width: 39.5%;
+  background: #333;
+}
+
+img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}

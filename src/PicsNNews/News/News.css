@@ -1,0 +1,14 @@
+.news {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(2.5px);
+  width: 40%;
+  height: 100%;
+  overflow: hidden;
+}
+.newsNight {
+  background: rgba(0,0,0,0.5) !important;
+}

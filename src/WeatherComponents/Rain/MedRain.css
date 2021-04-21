@@ -1,0 +1,184 @@
+.rainMed {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	bottom: 0;
+	top: 0;
+}
+.rainDropsMed, .rainDrops2Med {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  bottom: 0;
+  top: -100%;
+  -webkit-animation: rainfall 0.5s linear infinite;
+  animation: rainfall 0.5s linear infinite;
+  will-change: transform;
+}
+.rainDrops2Med {
+  animation-delay: 0.33s;
+}
+@keyframes rainfall {
+  to {
+    transform: translate3d(5%, 200%, 0);
+  }
+}
+
+.dropMed {
+  position: absolute;
+	height: 30px;
+	width: 1.5px;
+  border-radius: 50%;
+  background: linear-gradient(rgba(255,255,255,0), rgba(255,255,255,0.5));
+  transform: rotate(355deg);
+}
+
+.dropMed:nth-of-type(1) {
+	left: 82%;
+	top: 100%;
+}
+
+.dropMed:nth-of-type(2) {
+	left: 12%;
+	top: 62%;
+}
+
+.dropMed:nth-of-type(3) {
+	left: 33%;
+	top: 12%;
+}
+
+.dropMed:nth-of-type(4) {
+	left: 56%;
+	top: 17%;
+}
+
+.dropMed:nth-of-type(5) {
+	left: 91%;
+	top: 36%;
+}
+
+.dropMed:nth-of-type(6) {
+	left: 98%;
+	top: 51%;
+}
+
+.dropMed:nth-of-type(7) {
+	left: 17%;
+	top: 11%;
+}
+
+.dropMed:nth-of-type(8) {
+	left: 68%;
+	top: 72%;
+}
+
+.dropMed:nth-of-type(9) {
+	left: 3%;
+	top: 85%;
+}
+
+.dropMed:nth-of-type(10) {
+	left: 79%;
+	top: 10%;
+}
+
+.dropMed:nth-of-type(11) {
+	left: 60%;
+	top: 7%;
+}
+
+.dropMed:nth-of-type(12) {
+	left: 43%;
+	top: 96%;
+}
+
+.dropMed:nth-of-type(13) {
+	left: 10%;
+	top: 53%;
+}
+
+.dropMed:nth-of-type(14) {
+	left: 69%;
+	top: 86%;
+}
+
+.dropMed:nth-of-type(15) {
+	left: 62%;
+	top: 61%;
+}
+
+.dropMed:nth-of-type(16) {
+	left: 31%;
+	top: 18%;
+}
+
+.dropMed:nth-of-type(17) {
+	left: 59%;
+	top: 2%;
+}
+
+.dropMed:nth-of-type(18) {
+	left: 5%;
+	top: 87%;
+}
+
+.dropMed:nth-of-type(19) {
+	left: 81%;
+	top: 89%;
+}
+
+.dropMed:nth-of-type(20) {
+	left: 90%;
+	top: 57%;
+}
+
+.dropMed:nth-of-type(21) {
+	left: 79%;
+	top: 86%;
+}
+
+.dropMed:nth-of-type(22) {
+	left: 94%;
+	top: 52%;
+}
+
+.dropMed:nth-of-type(23) {
+	left: 24%;
+	top: 66%;
+}
+
+.dropMed:nth-of-type(24) {
+	left: 88%;
+	top: 85%;
+}
+
+.dropMed:nth-of-type(25) {
+	left: 60%;
+	top: 6%;
+}
+
+.dropMed:nth-of-type(26) {
+	left: 81%;
+	top: 11%;
+}
+
+.dropMed:nth-of-type(27) {
+	left: 25%;
+	top: 69%;
+}
+
+.dropMed:nth-of-type(28) {
+	left: 79%;
+	top: 82%;
+}
+
+.dropMed:nth-of-type(29) {
+	left: 40%;
+	top: 65%;
+}
+
+.dropMed:nth-of-type(30) {
+	left: 30%;
+	top: 84%;
+}

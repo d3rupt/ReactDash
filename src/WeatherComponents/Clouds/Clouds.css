@@ -1,0 +1,204 @@
+.cloudsContainer {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border: 1px solid red;
+}
+
+.cloud {
+  position: absolute;
+  background-image: url("clouds.png");
+  background-size: cover;
+  left: -22.5%;
+}
+
+.cloud:nth-of-type(1) {
+  animation-name: cloud-1;
+  animation-delay: 8s;
+  animation-duration: 29s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 24%;
+  height: 6%;
+  width: 6%;
+}
+
+@keyframes cloud-1 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
+.cloud:nth-of-type(2) {
+  animation-name: cloud-2;
+  animation-delay: 6s;
+  animation-duration: 25s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 65%;
+  height: 8%;
+  width: 8%;
+}
+
+@keyframes cloud-2 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
+.cloud:nth-of-type(3) {
+  animation-name: cloud-3;
+  animation-delay: 7s;
+  animation-duration: 11s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 34%;
+  height: 15%;
+  width: 15%;
+}
+
+@keyframes cloud-3 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
+.cloud:nth-of-type(4) {
+  animation-name: cloud-4;
+  animation-delay: 2s;
+  animation-duration: 18s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 64%;
+  height: 15%;
+  width: 15%;
+}
+
+@keyframes cloud-4 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
+.cloud:nth-of-type(5) {
+  animation-name: cloud-5;
+  animation-delay: 6s;
+  animation-duration: 16s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 32%;
+  height: 13%;
+  width: 13%;
+}
+
+@keyframes cloud-5 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
+.cloud:nth-of-type(6) {
+  animation-name: cloud-6;
+  animation-delay: 6s;
+  animation-duration: 15s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 41%;
+  height: 13%;
+  width: 13%;
+}
+
+@keyframes cloud-6 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
+.cloud:nth-of-type(7) {
+  animation-name: cloud-7;
+  animation-delay: 9s;
+  animation-duration: 22s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 15%;
+  height: 5%;
+  width: 5%;
+}
+
+@keyframes cloud-7 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
+.cloud:nth-of-type(8) {
+  animation-name: cloud-8;
+  animation-delay: 7s;
+  animation-duration: 21s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 55%;
+  height: 13%;
+  width: 13%;
+}
+
+@keyframes cloud-8 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
+.cloud:nth-of-type(9) {
+  animation-name: cloud-9;
+  animation-delay: 3s;
+  animation-duration: 23s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 11%;
+  height: 12%;
+  width: 12%;
+}
+
+@keyframes cloud-9 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
+.cloud:nth-of-type(10) {
+  animation-name: cloud-10;
+  animation-delay: 5s;
+  animation-duration: 17s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in;
+  top: 54%;
+  height: 10%;
+  width: 10%;
+}
+
+@keyframes cloud-10 {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(1500px);
+  }
+}
