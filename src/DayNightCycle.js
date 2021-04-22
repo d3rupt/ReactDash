@@ -79,11 +79,17 @@ export default class DayNightCycle extends React.Component {
     const sunNoon = document.getElementById('sunNoon')
 
     function changeSky(pos) {
+      if (!this.state.init) {
+        sky.style.transition = ''
+      } else {
+        sky.style.transition = 'all 10s'
+      }
       sky.classList.add(pos)
       if (sky.classList[0] !== pos) {
         sky.classList.remove(sky.classList[0])
       }
     }
+
     if (this.state.sunPosition !== null) {
       console.log(this.state.sunPosition)
       if ( this.state.sunPosition === 'sunrise') {

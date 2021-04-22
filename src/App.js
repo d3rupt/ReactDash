@@ -45,6 +45,7 @@ class App extends React.Component {
         })
       }
     } else {
+      //console.log('IS NOT WITHIN RANGE')
       if (this.state.isDay != 0) {
         this.setState({
           isDay: 0

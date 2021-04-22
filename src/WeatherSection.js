@@ -109,7 +109,7 @@ export default class WeatherSection extends React.Component {
 
   RequestWeather() {
   //  fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=49.895077&lon=-97.138451&exclude=minutely,hourly&appid=fc1e626cf9767a060d5f305178089700&units=metric`)
-    fetch(`http://api.weatherapi.com/v1/forecast.json?key=6018bc6ca5bb4a4884c184418202812&q=${this.state.coords.latitude},${this.state.coords.longitude}&days=2`)
+    fetch(`https://api.weatherapi.com/v1/forecast.json?key=6018bc6ca5bb4a4884c184418202812&q=${this.state.coords.latitude},${this.state.coords.longitude}&days=2`)
     //fetch(`http://api.weatherapi.com/v1/forecast.json?key=6018bc6ca5bb4a4884c184418202812&q=${this.state.location}&days=5`)
     .then(response => response.json())
     .then(json => {
