@@ -26,7 +26,8 @@ export default class Calendar extends React.Component {
       fetch(`https://www.googleapis.com/calendar/v3/calendars/${this.props.calendarSrc}/events?singleEvents=True&orderBy=startTime&timeMin=${today.toISOString()}&timeMax=${oneWeek.toISOString()}&key=${env.REACT_APP_calendarAPI}`)
         .then(res => res.json())
         .then(events => {
-
+          console.log('CALENDAR OUTPUT')
+          console.log(events)
           let thisWeek = {
             0: [],
             1: [],
