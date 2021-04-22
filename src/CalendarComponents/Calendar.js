@@ -2,6 +2,7 @@ import React from 'react'
 import moment from 'moment'
 import './Calendar.css'
 import CalendarDay from './CalendarDay'
+import runtimeEnv from '@mars/heroku-js-runtime-env';
 
 export default class Calendar extends React.Component {
   constructor(props) {
@@ -15,14 +16,14 @@ export default class Calendar extends React.Component {
 
 
   GetEvents() {
+    const env = runtimeEnv();
     let today = moment()
   //  let today = moment(`${new Date().getFullYear()}-${new Date().getMonth()}-${new Date().getDate()}`, 'YYYY-MM-DD')
     let oneWeek = new Date()
     oneWeek.setDate(oneWeek.getDate() + 6)
 
     let sortEvents = () => {
-
-      fetch(`https://www.googleapis.com/calendar/v3/calendars/${this.props.calendarSrc}/events?singleEvents=True&orderBy=startTime&timeMin=${today.toISOString()}&timeMax=${oneWeek.toISOString()}&key=${process.env.calendarAPI}`)
+      fetch(`https://www.googleapis.com/calendar/v3/calendars/${this.props.calendarSrc}/events?singleEvents=True&orderBy=startTime&timeMin=${today.toISOString()}&timeMax=${oneWeek.toISOString()}&key=${env.REACT_APP_calendarAPI}`)
         .then(res => res.json())
         .then(events => {
 
@@ -62,7 +63,7 @@ export default class Calendar extends React.Component {
     }
 
     let sortHolidays = () => {
-      fetch(`https://www.googleapis.com/calendar/v3/calendars/en.canadian%23holiday%40group.v.calendar.google.com/events?key=${process.env.calendarAPI}`)
+      fetch(`https://www.googleapis.com/calendar/v3/calendars/en.canadian%23holiday%40group.v.calendar.google.com/events?key=${env.REACT_APP_calendarAPI}`)
         .then(res => res.json())
         .then(holidays => {
 

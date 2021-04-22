@@ -64,6 +64,7 @@ class App extends React.Component {
   }
 
   render() {
+
     return (
       <div className={this.state.isDay == 0 ? 'App opacity4' : 'App'}>
       <div id="backgrounds">
