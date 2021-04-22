@@ -96,8 +96,6 @@ export default class WeatherSection extends React.Component {
   getLocation() {
    if (navigator.geolocation) {
      navigator.geolocation.getCurrentPosition ((position) => {
-       console.log('POSITION')
-       console.log(position.coords)
        this.setState({
          coords: position.coords
        }, () => {
@@ -184,7 +182,7 @@ export default class WeatherSection extends React.Component {
           document.querySelector('.Moon').classList.add('waningCrescent')
 }
         //this.checkSunState();
-        this.CheckSunPos();
+       // this.CheckSunPos();
       }
     ).catch((err) => {
       console.log('error')

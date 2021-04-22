@@ -11,10 +11,10 @@ export default class DayNightCycle extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      //sunPosition: null,
+      sunPosition: null,
       sunTimes: null,
       isDay: props.isDay,
-      sunPosition: 'solarNoon',
+      init: false
     }
     this.SunPos = this.SunPos.bind(this)
     this.setSunAnims = this.setSunAnims.bind(this)
@@ -35,8 +35,10 @@ export default class DayNightCycle extends React.Component {
 
     const sunPos = suncalc.getTimes(now, 49.895077, -97.138451)
     const sunTimes = Object.values(sunPos)
+
+    //MIGHT BE A DUPLICATE FUNCTION
     this.InitSun()
-    for (let i = 0; i < sunTimes.length; i++) {
+    /*for (let i = 0; i < sunTimes.length; i++) {
       if (now.getHours() === sunTimes[i].getHours()) {
         if (now.getMinutes() === sunTimes[i].getMinutes()) {
           for (var ii in sunPos) {
@@ -51,7 +53,7 @@ export default class DayNightCycle extends React.Component {
           }
         }
       }
-    }
+    }*/
   }
 
   setSunAnims() {
@@ -76,7 +78,14 @@ export default class DayNightCycle extends React.Component {
     const sunGoldens = document.getElementById('sunColorGoldens')
     const sunNoon = document.getElementById('sunNoon')
 
+    function changeSky(pos) {
+      sky.classList.add(pos)
+      if (sky.classList[0] !== pos) {
+        sky.classList.remove(sky.classList[0])
+      }
+    }
     if (this.state.sunPosition !== null) {
+      console.log(this.state.sunPosition)
       if ( this.state.sunPosition === 'sunrise') {
         if (this.state.animPos != 0) {
           setTimeout(() => {
@@ -283,8 +292,9 @@ export default class DayNightCycle extends React.Component {
           setTimeout(() => {
             document.querySelector('.dayBackground').classList.add('opacity4')
           }, 3010)
-          sky.classList.add('between8')
-          sky.classList.remove('goldenHour')
+          /*sky.classList.add('between8')
+          sky.classList.remove('goldenHour')*/
+          changeSky('between8')
           //sun colors
           sunGoldens.classList.add('opacity2')
           sunGoldens.classList.remove('opacity4')
@@ -307,8 +317,8 @@ export default class DayNightCycle extends React.Component {
             document.querySelector('.dayBackground').classList.remove('opacity4')
           }, 3010)
 
-          sky.classList.remove('between8')
-          sky.classList.add('sunsetStart')
+          changeSky('sunsetStart')
+
           //sun colors
           sunGoldens.classList.remove('opacity2')
           sunSunriseEnd.classList.add('opacity4')
@@ -587,21 +597,16 @@ export default class DayNightCycle extends React.Component {
   componentDidUpdate(prevState) {
     if (prevState.sunPosition !== this.state.sunPosition) {
     this.setSunAnims()
-  }
-  //this.CheckIsDay()
+    }
   }
   componentDidMount() {
     this.InitSun()
     this.SunPos()
-    //const sunPosTimer = setInterval(this.InitSun, 60000 * 5)
-  const sunPosTimer = setInterval(this.InitSun, 5000)
+    const sunPosTimer = setInterval(this.InitSun, 5000)
 
-    //this.CheckIsDay()
   }
 
   InitSun() {
-    console.log('LOCATION')
-    console.log(this.props.latitude, this.props.longitude)
     const now = moment(new Date(), 'ddd MMM DD YYYY HH:mm')
     const sunTimes = suncalc.getTimes(now, this.props.latitude, this.props.longitude)
     //const sunTimes = suncalc.getTimes(now, 49.895077, -97.138451)
@@ -653,8 +658,11 @@ export default class DayNightCycle extends React.Component {
     ];
 
     for (let i = 0; i < ranges.length; i++) {
+      //CHANGE TO SWITCH CASE
       if (now.within(ranges[i])) {
         if (i == 0) {
+          console.log('NIGJHT')
+          console.log(ranges[i])
           this.setState({
             sunPosition: 'nadir'
           })

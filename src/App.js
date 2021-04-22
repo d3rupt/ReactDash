@@ -39,14 +39,12 @@ class App extends React.Component {
     // const sunTimes = suncalc.getTimes(new Date(), 49.895077, -97.138451);
     if (document.getElementById('sky').classList.length != 0) {
       if (skyDay.includes(document.getElementById('sky').classList[0])) {
-      //console.log('IS WITHIN RANGE')
       if (this.state.isDay != 1) {
         this.setState({
           isDay: 1
         })
       }
     } else {
-      //console.log('IS NOT WITHIN RANGE')
       if (this.state.isDay != 0) {
         this.setState({
           isDay: 0

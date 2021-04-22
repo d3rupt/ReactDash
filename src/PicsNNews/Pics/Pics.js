@@ -1,5 +1,5 @@
 import React from 'react'
-import picOne from './1.jpg'
+/*import picOne from './1.jpg'
 import picTwo from './2.jpg'
 import picThree from './3.jpg'
 import picFour from './4.jpg'
@@ -26,9 +26,7 @@ import picTwentyfour from './24.jpg'
 import picTwentyfive from './25.jpg'
 import picTwentysix from './26.jpg'
 import picTwentyseven from './27.jpg'
-import picTwentyeight from './28.jpg'
-
-
+import picTwentyeight from './28.jpg'*/
 
 import ('./Pics.css')
 
@@ -44,7 +42,7 @@ export default class Pics extends React.Component {
   }
 
   componentDidUpdate() {
-    setTimeout(this.PicChooser, 60000 * 5)
+    //setTimeout(this.PicChooser, 60000 * 5)
 }
 
   componentDidMount() {
@@ -75,9 +73,15 @@ export default class Pics extends React.Component {
   render() {
     return(
         <div className="Pics" >
-        {this.state.hasPics ?
-<>
-          <div className="picContainer" style={{backgroundImage: `url('${picOne}')`}}></div>
+          <p> Add pics to the Pics folder & follow the naming conventions to import your own images</p>
+        </div>
+
+    )
+  }
+}
+
+/*
+<div className="picContainer" style={{backgroundImage: `url('${picOne}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picTwo}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picThree}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picFour}')`}}></div>
@@ -105,12 +109,4 @@ export default class Pics extends React.Component {
           <div className="picContainer" style={{backgroundImage: `url('${picTwentysix}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picTwentyseven}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picTwentyeight}')`}}></div>
-</>
-        :
-          <p> Add pics to the Pics folder & follow the naming conventions to import your own images</p>
-          }
-</div>
-
-    )
-  }
-}
+ */
