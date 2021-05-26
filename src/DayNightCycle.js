@@ -1,854 +1,480 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import './DayNightCycle.css'
 import suncalc from 'suncalc'
+import {useDataLayerValue} from './DataLayer';
 import Moment from 'moment'
 import { extendMoment } from 'moment-range';
 const moment = extendMoment(Moment);
 
+export default function DayNightCycle({moon, latitude, longitude, season}) {
+  const [{isDayGlobal, wallpaper}, dispatch] = useDataLayerValue()
+  const [dayWallpaper, setWallpaper] = useState('');
+  const [sunPosition, setSunPosition] = useState(null);
+  //const [sunTimes, getSunTimes] = useState(null);
+  const [isDay, setIsDay] = useState(null);
+  //const [init, setInit] = useState(false)
+  const [skyWaxing, setWaxing] = useState(null);
+  const [skyWaning, setWaning] = useState(null)
+    const [moonOpacity, setMoonOpacity] = useState('');
+  const [skies, setSkies] = useState(
+      {
+        'nadir': {
+          'prev': 'between11'
+        },
+        'between1': {
+          'prev': 'nadir'
+        },
+        'nightEnd': {
+          'prev': 'between1'
+        },
+        'between2': {
+          'prev': 'nightEnd'
+        },
+        'nauticalDawn': {
+          'prev': 'between2'
+        },
+        'dawn': {
+          'prev': 'nauticalDawn'
+        },
+        'between3': {
+          'prev': 'dawn'
+        },
+        'sunrise': {
+          'prev': 'between3'
+        },
+        'between4': {
+          'prev': 'sunrise'
+        },
+        'sunriseEnd': {
+          'prev': 'between4'
+        },
+        'between5': {
+          'prev': 'sunriseEnd'
+        },
+        'goldenHourEnd': {
+          'prev': 'between5'
+        },
+        'between6': {
+          'prev': 'goldenHourEnd'
+        },
+        'solarNoon': {
+          'prev': 'between6'
+        },
+        'between7': {
+          'prev': 'solarNoon'
+        },
+        'goldenHour': {
+          'prev': 'between7'
+        },
+        'between8': {
+          'prev': 'goldenHour'
+        },
+        'sunsetStart': {
+          'prev': 'between8'
+        },
+        'between9': {
+          'prev': 'sunsetStart'
+        },
+        'sunset': {
+          'prev': 'between9'
+        },
+        'between10': {
+          'prev': 'sunset'
+        },
+        'dusk': {
+          'prev': 'between11'
+        },
+        'nauticalDusk': {
+          'prev': 'dusk'
+        },
+        'night': {
+          'prev': 'nauticalDusk'
+        },
+        'between11': {
+          'prev': 'night'
+        }
+      }
+  )
 
+  useEffect(() => {
+      dispatch({
+          type: 'SET_WALLPAPER',
+          wallpaper: dayWallpaper
+      })
+  }, [dayWallpaper]);
 
-export default class DayNightCycle extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      sunPosition: null,
-      sunTimes: null,
-      isDay: props.isDay,
-      init: false
-    }
-    this.SunPos = this.SunPos.bind(this)
-    this.setSunAnims = this.setSunAnims.bind(this)
-    this.InitSun = this.InitSun.bind(this)
-    this.CheckSeason = this.CheckSeason.bind(this)
-    //this.CheckIsDay = this.CheckIsDay.bind(this)
-  }
-
-  SunPos() {
-    this.setState({
-      sunPosition: this.props.sun
+  useEffect(() => {
+    setTimeout(() => {
+      InitSun();
+      setInterval(InitSun, 20*6000)
     })
-    const now = new Date()
+  }, [])
 
-    this.setState({
-      sunTimes: suncalc.getTimes(now, this.props.latitude, this.props.longitude)
+    useEffect(() => {
+        dispatch({
+            type: 'SET_DAYTIME',
+            isDayGlobal: isDay
+        })
+    }, [isDay])
+
+  const InitSun = () => {
+      const d = new Date();
+      let now = moment().set({
+          'year': d.getFullYear(),
+          'month': d.getMonth(),
+          'date': d.getDate(),
+          'hour': d.getHours(),
+          'minute': d.getMinutes()
+      })
+      /*
+      let now = moment().set({
+        'year': 2021,
+        'month': 3,
+        'date': 21,
+        'hour': 20,
+        'minute': 30
     })
+       */
+    //let now = moment(new Date(), 'ddd MMM DD YYYY HH:mm')
 
-    const sunPos = suncalc.getTimes(now, 49.895077, -97.138451)
-    const sunTimes = Object.values(sunPos)
+    now = moment(now, 'ddd MMM DD YYYY HH:mm')
+    console.log(now)
 
-    //MIGHT BE A DUPLICATE FUNCTION
-    this.InitSun()
-    /*for (let i = 0; i < sunTimes.length; i++) {
-      if (now.getHours() === sunTimes[i].getHours()) {
-        if (now.getMinutes() === sunTimes[i].getMinutes()) {
-          for (var ii in sunPos) {
-            if (sunPos.hasOwnProperty(ii)) {
-              if (sunPos[ii] === sunTimes[i])  {
-                this.setState({
-                  sunPosition: ii
-                })
-                console.log('TIME: ' + this.state.sunPosition)
-              }
-            }
-          }
-        }
-      }
-    }*/
-  }
-
-  setSunAnims() {
-    const sun = document.querySelector('.Sun')
-    const moon = document.querySelector('.Moon')
-    const sky = document.getElementById('sky')
-    const skyColor = document.querySelector('.sky')
-    //sky colors
-    const dusk = document.getElementById('dusk')
-    const night = document.getElementById('night')
-    const nadir = document.getElementById('nadir')
-    const nightEnd = document.getElementById('nightEnd')
-    const dawn = document.getElementById('dawn')
-    const sunrise = document.getElementById('sunrise')
-    const sunriseEnd = document.getElementById('sunriseEnd')
-    const goldenHourEnd = document.getElementById('goldenHourEnd')
-    const noon = document.getElementById('noon')
-    //sun sunColors es
-    const sunDuskDawn = document.getElementById('sunColorDuskDawn')
-    const sunSunriseEnd = document.getElementById('sunColorSunriseEndSunriseStart')
-    const sunSunset = document.getElementById('sunColorSunriseSunset')
-    const sunGoldens = document.getElementById('sunColorGoldens')
-    const sunNoon = document.getElementById('sunNoon')
-
-    function changeSky(pos) {
-      if (!this.state.init) {
-        sky.style.transition = ''
-      } else {
-        sky.style.transition = 'all 10s'
-      }
-      sky.classList.add(pos)
-      if (sky.classList[0] !== pos) {
-        sky.classList.remove(sky.classList[0])
-      }
+    const sunTimes = suncalc.getTimes(now, latitude, longitude)
+    console.log(sunTimes)
+    const times = (pos) => {
+        return moment(sunTimes[pos], 'ddd MMM DD YYYY HH:mm')
     }
-
-    if (this.state.sunPosition !== null) {
-      console.log(this.state.sunPosition)
-      if ( this.state.sunPosition === 'sunrise') {
-        if (this.state.animPos != 0) {
-          setTimeout(() => {
-            document.querySelector('.dawnBackground').classList.remove('opacity4')
-            document.querySelector('.sunriseBackground').classList.add('opacity4')
-          }, 3010)
-
-          //sun rotation
-          sky.classList.remove('between3')
-          sky.classList.add('sunrise')
-          //sun colors
-          sunDuskDawn.classList.remove('opacity2')
-          sunSunset.classList.add('opacity4')
-          sunSunset.classList.remove('opacity2')
-          //sky colors
-          sunrise.classList.add('opacity4')
-          sunrise.classList.remove('opacity3')
-          dawn.classList.remove('opacity2')
-
-          moon.classList.remove('opacity2')
-          moon.classList.add('opacity1')
-          this.setState({
-            animPos: 0
-          })
-        }
-      } else if (this.state.sunPosition === 'between4') {
-        if (this.state.animPos != 15) {
-          setTimeout(() => {
-            document.querySelector('.sunriseBackground').classList.add('opacity4')
-          }, 3010)
-
-          //sun rotation
-          sky.classList.add('between4')
-          sky.classList.remove('sunrise')
-          //sun colors
-          sunSunriseEnd.classList.add('opacity2')
-          sunSunset.classList.remove('opacity4')
-          sunSunset.classList.add('opacity2')
-          //sky colors
-          sunriseEnd.classList.add('opacity2')
-          sunrise.classList.add('opacity2')
-          sunrise.classList.remove('opacity4')
-
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 15
-          })
-        }
-      } else if (this.state.sunPosition === 'sunriseEnd') {
-          if (this.state.animPos != 1) {
-            setTimeout(() => {
-              document.querySelector('.sunriseBackground').classList.add('opacity4')
-            }, 3010)
-                        //sun rotation
-            sky.classList.remove('between4')
-            sky.classList.add('sunriseEnd')
-            //sun colors
-            sunSunset.classList.remove('opacity2')
-            sunSunriseEnd.classList.add('opacity4')
-            sunSunriseEnd.classList.remove('opacity2')
-            //sky colors
-            sunrise.classList.remove('opacity2')
-            sunriseEnd.classList.remove('opacity3')
-            sunriseEnd.classList.add('opacity4')
-
-            moon.classList.remove('opacity1')
-            moon.classList.add('opacity0')
-            this.setState({
-              animPos: 1
-            })
-          }
-      } else if (this.state.sunPosition === 'between5') {
-        if (this.state.animPos != 16) {
-          setTimeout(() => {
-            document.querySelector('.sunriseBackground').classList.remove('opacity4')
-            document.querySelector('.dayBackground').classList.add('opacity4')
-          }, 3010)
-
-                    //sun rotation
-          sky.classList.add('between5')
-          sky.classList.remove('sunriseEnd')
-          //sun colors
-          sunSunriseEnd.classList.add('opacity2')
-          sunSunriseEnd.classList.remove('opacity4')
-          sunGoldens.classList.add('opacity2')
-          //sky colors
-          sunriseEnd.classList.add('opacity2')
-          sunriseEnd.classList.remove('opacity4')
-          goldenHourEnd.classList.add('opacity3')
-
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 16
-          })
-        }
-      } else if (this.state.sunPosition === 'goldenHourEnd') {
-        if (this.state.animPos != 2) {
-          setTimeout(() => {
-            document.querySelector('.dayBackground').classList.add('opacity4')
-          }, 3010)
-                    //sun rotation
-          sky.classList.remove('between5')
-          sky.classList.add('goldenHourEnd')
-          //sun colors
-          sunSunriseEnd.classList.remove('opacity2')
-          sunGoldens.classList.add('opacity4')
-          sunGoldens.classList.remove('opacity2')
-          //sky colors
-          sunriseEnd.classList.remove('opacity2')
-          goldenHourEnd.classList.remove('opacity3')
-          goldenHourEnd.classList.add('opacity4')
-
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 2
-          })
-        }
-
-      } else if (this.state.sunPosition === 'between6') {
-        if (this.state.animPos != 17) {
-          setTimeout(() => {
-            document.querySelector('.dayBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.add('between6')
-          sky.classList.remove('goldenHourEnd')
-          //sun colors
-          sunGoldens.classList.add('opacity2')
-          sunGoldens.classList.remove('opacity4')
-          sunNoon.classList.add('opacity2')
-          //sky colors
-          goldenHourEnd.classList.add('opacity2')
-          goldenHourEnd.classList.remove('opacity4')
-          noon.classList.add('opacity3')
-
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 17
-          })
-        }
-      } else if (this.state.sunPosition === 'solarNoon') {
-        if (this.state.animPos != 3) {
-          setTimeout(() => {
-            document.querySelector('.dayBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.remove('between6')
-          sky.classList.add('solarNoon')
-          //sun colors
-          sunGoldens.classList.remove('opacity2')
-          sunNoon.classList.add('opacity4')
-          sunNoon.classList.remove('opacity2')
-          //sky colors
-          goldenHourEnd.classList.remove('opacity2')
-          noon.classList.remove('opacity2')
-          noon.classList.add('opacity4')
-
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 3
-          })
-        }
-      } else if (this.state.sunPosition === 'between7') {
-        if (this.state.animPos != 18) {
-          setTimeout(() => {
-            document.querySelector('.dayBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.add('between7')
-          sky.classList.remove('solarNoon')
-          //sun colors
-          sunGoldens.classList.add('opacity2')
-          sunNoon.classList.add('opacity2')
-          //sky colors
-          noon.classList.add('opacity2')
-          noon.classList.remove('opacity4')
-          goldenHourEnd.classList.add('opacity3')
-
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 18
-          })
-        }
-      } else if (this.state.sunPosition === 'goldenHour') {
-        if (this.state.animPos != 4) {
-          setTimeout(() => {
-            document.querySelector('.dayBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.remove('between7')
-          sky.classList.add('goldenHour')
-          //sun colors
-          sunNoon.classList.remove('opacity2')
-          sunGoldens.classList.add('opacity4')
-          sunGoldens.classList.remove('opacity2')
-          //sky colors
-          noon.classList.remove('opacity2')
-          goldenHourEnd.classList.remove('opacity3')
-          goldenHourEnd.classList.add('opacity4')
-
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 4
-          })
-        }
-      } else if (this.state.sunPosition === 'between8') {
-        if (this.state.animPos != 19) {
-          setTimeout(() => {
-            document.querySelector('.dayBackground').classList.add('opacity4')
-          }, 3010)
-          /*sky.classList.add('between8')
-          sky.classList.remove('goldenHour')*/
-          changeSky('between8')
-          //sun colors
-          sunGoldens.classList.add('opacity2')
-          sunGoldens.classList.remove('opacity4')
-          sunSunriseEnd.classList.add('opacity2')
-
-          //sky colors
-          goldenHourEnd.classList.add('opacity2')
-          goldenHourEnd.classList.remove('opacity4')
-          sunriseEnd.classList.add('opacity3')
-
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 19
-          })
-        }
-      } else if (this.state.sunPosition === 'sunsetStart') {
-        if (this.state.animPos != 5) {
-          setTimeout(() => {
-            document.querySelector('.sunsetBackground').classList.add('opacity4')          //sun rotation
-            document.querySelector('.dayBackground').classList.remove('opacity4')
-          }, 3010)
-
-          changeSky('sunsetStart')
-
-          //sun colors
-          sunGoldens.classList.remove('opacity2')
-          sunSunriseEnd.classList.add('opacity4')
-          sunSunriseEnd.classList.remove('opacity2')
-          //sky colors
-          goldenHourEnd.classList.remove('opacity2')
-          sunriseEnd.classList.remove('opacity3')
-          sunriseEnd.classList.add('opacity4')
-
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 5
-          })
-        }
-       }  else if (this.state.sunPosition === 'between9') {
-         if (this.state.animPos != 20) {
-           setTimeout(() => {
-             document.querySelector('.sunsetBackground').classList.add('opacity4')          //sun rotation
-           }, 3010)
-           sky.classList.add('between9')
-           sky.classList.remove('sunsetStart')
-           //sun colors
-           sunSunriseEnd.classList.add('opacity2')
-           sunSunriseEnd.classList.remove('opacity4')
-           sunSunset.classList.add('opacity2')
-
-           //sky colors
-           sunriseEnd.classList.add('opacity2')
-           sunriseEnd.classList.remove('opacity4')
-           sunrise.classList.add('opacity3')
-
-           moon.classList.add('opacity0')
-           this.setState({
-             animPos: 20
-           })
-         }
-       } else if (this.state.sunPosition === 'sunset') {
-         if (this.state.animPos != 6) {
-           setTimeout(() => {
-             document.querySelector('.sunsetBackground').classList.add('opacity4')          //sun rotation
-           }, 3010)
-           sky.classList.remove('between9')
-           sky.classList.add('sunset')
-           //sun colors
-           sunSunriseEnd.classList.remove('opacity2')
-           sunSunset.classList.add('opacity4')
-           sunSunset.classList.remove('opacity2')
-           //sky colors
-           sunriseEnd.classList.remove('opacity2')
-           sunrise.classList.remove('opacity3')
-           sunrise.classList.add('opacity4')
-
-           moon.classList.add('opacity0')
-           this.setState({
-             animPos: 6
-           })
-         }
-      }  else if (this.state.sunPosition === 'between10') {
-        if (this.state.animPos != 21) {
-          setTimeout(() => {
-            document.querySelector('.sunsetBackground').classList.add('opacity4')          //sun rotation
-          }, 3010)
-          sky.classList.add('between10')
-          sky.classList.remove('sunset')
-          //sun colors
-          sunSunset.classList.add('opacity2')
-          sunSunset.classList.remove('opacity4')
-          sunDuskDawn.classList.add('opacity2')
-
-          //sky colors
-          sunrise.classList.add('opacity2')
-          sunrise.classList.remove('opacity4')
-          dawn.classList.add('opacity3')
-
-          moon.classList.remove('opacity0')
-          moon.classList.add('opacity2')
-          this.setState({
-            animPos: 21
-          })
-        }
-      } else if (this.state.sunPosition === 'dusk' || this.state.sunPosition === 'nauticalDusk') {
-        if (this.state.animPos != 7) {
-          setTimeout(() => {
-            document.querySelector('.sunsetBackground').classList.remove('opacity4')          //sun rotation
-            document.querySelector('.duskBackground').classList.add('opacity4')
-          }, 3010)
-
-          sky.classList.remove('between10')
-          sky.classList.add('dusk')
-          //sun colors
-          sunSunset.classList.remove('opacity2')
-          sunDuskDawn.classList.add('opacity4')
-          sunDuskDawn.classList.remove('opacity2')
-          //sky colors
-          sunrise.classList.remove('opacity2')
-          dawn.classList.remove('opacity3')
-          dawn.classList.add('opacity4')
-
-          moon.classList.remove('opacity0')
-          moon.classList.add('opacity2')
-          this.setState({
-            animPos: 7
-          })
-        }
-      } else if (this.state.sunPosition === 'night') {
-        if (this.state.animPos != 8) {
-          setTimeout(() => {
-            document.querySelector('.duskBackground').classList.remove('opacity4')
-            document.querySelector('.nightBackground').classList.add('opacity4')          }, 3010)
-
-          sky.classList.remove('dusk')
-          sky.classList.add('night')
-          //sun colors
-          sunDuskDawn.classList.remove('opacity2')
-          sun.classList.add('opacity0')
-          //sky colors
-          dawn.classList.remove('opacity4')
-          night.classList.remove('opacity3')
-          night.classList.add('opacity4')
-
-          moon.classList.remove('opacity2')
-          moon.classList.add('opacity4')
-          this.setState({
-            animPos: 8
-          })
-        }
-      }  else if (this.state.sunPosition === 'between11') {
-        if (this.state.animPos != 22) {
-          setTimeout(() => {
-            document.querySelector('.nightBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.add('between11')
-          sky.classList.remove('night')
-          //sun colors
-          sunDuskDawn.classList.remove('opacity2')
-          sun.classList.add('opacity0')
-          //sky colors
-          night.classList.remove('opacity4')
-          night.classList.add('opacity2')
-          nadir.classList.add('opacity3')
-
-          moon.classList.remove('opacity2')
-          moon.classList.add('opacity4')
-          this.setState({
-            animPos: 22
-          })
-        }
-      } else if (this.state.sunPosition === 'nadir') {
-        if (this.state.animPos != 9) {
-          setTimeout(() => {
-            document.querySelector('.nightBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.remove('between11')
-          sky.classList.add('nadir')
-          //sun colors
-          sun.classList.add('opacity0')
-          //sky colors
-          nadir.classList.remove('opacity3')
-          nadir.classList.add('opacity4')
-          night.classList.remove('opacity2')
-
-          moon.classList.add('opacity4')
-          this.setState({
-            animPos: 9
-          })
-        }
-      } else if (this.state.sunPosition === 'between1') {
-        if (this.state.animPos != 13) {
-          setTimeout(() => {
-            document.querySelector('.nightBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.remove('nadir')
-          sky.classList.add('between1')
-          //sun colors
-          sun.classList.add('opacity0')
-          //sky colors
-          nadir.classList.remove('opacity4')
-          nadir.classList.add('opacity2')
-          night.classList.add('opacity3')
-
-          moon.classList.add('opacity4')
-          this.setState({
-            animPos: 13
-          })
-        }
-        //betweenNightEnd&Dawn
-      } else if (this.state.sunPosition === 'nightEnd') {
-        if (this.state.animPos != 10) {
-          setTimeout(() => {
-            document.querySelector('.nightBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.remove('between1')
-          sky.classList.add('nightEnd')
-          //sun colors
-          sun.classList.add('opacity0')
-          //sky colors
-          nadir.classList.remove('opacity2')
-          night.classList.add('opacity4')
-          night.classList.remove('opacity3')
-
-          moon.classList.add('opacity4')
-          this.setState({
-            animPos: 10
-          })
-        }
-      } else if (this.state.sunPosition === 'between2') {
-        if (this.state.animPos != 14) {
-          setTimeout(() => {
-            document.querySelector('.nightBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.remove('nightEnd')
-          sky.classList.add('between2')
-          //sun colors
-          sunDuskDawn.classList.add('opacity2')
-          sun.classList.remove('opacity0')
-          //sky colors
-          night.classList.remove('opacity4')
-          night.classList.add('opacity2')
-          dawn.classList.add('opacity3')
-
-          moon.classList.remove('opacity4')
-          moon.classList.add('opacity2')
-          this.setState({
-            animPos: 14
-          })
-        }
-        //betweeenDawn&Sunrise
-      } else if (this.state.sunPosition === 'dawn' || this.state.sunPosition === 'nauticalDawn') {
-        if (this.state.animPos != 11) {
-          setTimeout(() => {
-            document.querySelector('.dawnBackground').classList.add('opacity4')
-            document.querySelector('.nightBackground').classList.remove('opacity4')
-          }, 3010)
-
-          sky.classList.remove('between2')
-          sky.classList.add('dawn')
-          //sun colors
-          sunDuskDawn.classList.remove('opacity2')
-          sunDuskDawn.classList.add('opacity4')
-          //sky colors
-          night.classList.remove('opacity2')
-          dawn.classList.remove('opacity3')
-          dawn.classList.add('opacity4')
-
-          moon.classList.remove('opacity4')
-          moon.classList.add('opacity2')
-          this.setState({
-            animPos: 11
-          })
-        }
-      } else if (this.state.sunPosition === 'between3') {
-        if (this.state.animPos != 15) {
-          setTimeout(() => {
-            document.querySelector('.dawnBackground').classList.add('opacity4')
-          }, 3010)
-          sky.classList.remove('dawn')
-          sky.classList.add('between3')
-          //sun colors
-          sunDuskDawn.classList.add('opacity2')
-          sunSunriseEnd.classList.add('opacity2')
-          //sky colors
-          dawn.classList.add('opacity2')
-          dawn.classList.remove('opacity4')
-          sunrise.classList.add('opacity3')
-
-          moon.classList.remove('opacity2')
-          moon.classList.add('opacity0')
-          this.setState({
-            animPos: 15
-          })
-        }
-      }
-    }
-  }
-
-  componentDidUpdate(prevState) {
-    if (prevState.sunPosition !== this.state.sunPosition) {
-    this.setSunAnims()
-    }
-  }
-  componentDidMount() {
-    this.InitSun()
-    this.SunPos()
-    const sunPosTimer = setInterval(this.InitSun, 5000)
-
-  }
-
-  InitSun() {
-    const now = moment(new Date(), 'ddd MMM DD YYYY HH:mm')
-    const sunTimes = suncalc.getTimes(now, this.props.latitude, this.props.longitude)
-    //const sunTimes = suncalc.getTimes(now, 49.895077, -97.138451)
-    const times = [
-      moment(sunTimes.nadir, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.nightEnd, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.nauticalDawn, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.dawn, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.sunrise, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.sunriseEnd, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.goldenHourEnd, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.solarNoon, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.goldenHour, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.sunsetStart, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.sunset, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.dusk, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.nauticalDusk, 'ddd MMM DD YYYY HH:mm'),
-      moment(sunTimes.night, 'ddd MMM DD YYYY HH:mm')
-    ]
-    let tomorrow = new Date()
-    tomorrow = tomorrow.setDate(tomorrow.getDate()+1)
 
     const ranges = [
-      moment.range(times[0], moment.range(times[0], times[1]).center()), //nadir
-      moment.range(times[1], moment.range(times[1], times[2]).center()), //nightEnd
-      moment.range(times[2], moment.range(times[2], times[3]).center()), //nauticalDawn
-      moment.range(times[3], moment.range(times[3], times[4]).center()), //dawn
-      moment.range(times[4], moment.range(times[4], times[5]).center()), //sunrise
-      moment.range(times[5], moment.range(times[5], times[6]).center()), //sunriseEnd
-      moment.range(times[6], moment.range(times[6], times[7]).center()), //goldenHourEnd
-      moment.range(times[7], moment.range(times[7], times[8]).center()), //solarNoon
-      moment.range(times[8], moment.range(times[8], times[9]).center()), //goldenHour
-      moment.range(times[9], moment.range(times[9], times[10]).center()), //sunsetStart
-      moment.range(times[10], moment.range(times[10], times[11]).center()), //sunset
-      moment.range(times[11], moment.range(times[11], times[12]).center()), //dusk
-      moment.range(times[12], moment.range(times[12], times[13]).center()), //nauticalDusk
-      moment.range(times[13], moment(suncalc.getTimes(tomorrow, 49.895077, -97.138451)).nadir), //night
-      moment.range(moment.range(times[1], times[2]).center(), times[2]), //betweenNadir&NightEnd 1
-      moment.range(moment.range(times[2], times[3]).center(), times[3]), //betweenNightEnd&Dawn 2
-      moment.range(moment.range(times[3], times[4]).center(), times[4]), //betweenDawn&Sunrise 3
-      moment.range(moment.range(times[4], times[5]).center(), times[5]), //betweenSunrise&SunriseEnd 4
-      moment.range(moment.range(times[5], times[6]).center(), times[6]), //betweensunriseEnd&GodlenEnd 5
-      moment.range(moment.range(times[6], times[7]).center(), times[7]), //betweengoldenEnd&Noon 6
-      moment.range(moment.range(times[7], times[8]).center(), times[8]), //betweenNoon&Golden 7
-      moment.range(moment.range(times[8], times[9]).center(), times[9]), //betweenGolden&SunsetStart 8
-      moment.range(moment.range(times[9], times[10]).center(), times[10]), //betweenSunsetStart&Sunset 9
-      moment.range(moment.range(times[10], times[11]).center(), times[11]), //betweenSunset&Dusk 10
-      moment.range(moment.range(times[13], suncalc.getTimes(tomorrow, 49.895077, -97.138451).nadir).center(), suncalc.getTimes(tomorrow, 49.895077, -97.138451).nadir) //betweenNight&Nadir 11
+      moment.range(times('nadir'), moment.range(times('nadir'), times('nightEnd')).center()), //nadir
+      moment.range(times('nightEnd'), moment.range(times('nightEnd'), times('nauticalDawn')).center()), //nightEnd
+      moment.range(times('nauticalDawn'), moment.range(times('nauticalDawn'), times('dawn')).center()), //nauticalDawn
+      moment.range(times('dawn'), moment.range(times('dawn'), times('sunrise')).center()), //dawn
+      moment.range(times('sunrise'), moment.range(times('sunrise'), times('sunriseEnd')).center()), //sunrise
+      moment.range(times('sunriseEnd'), moment.range(times('sunriseEnd'), times('goldenHourEnd')).center()), //sunriseEnd
+      moment.range(times('goldenHourEnd'), moment.range(times('goldenHourEnd'), times('solarNoon')).center()), //goldenHourEnd
+      moment.range(times('solarNoon'), moment.range(times('solarNoon'), times('goldenHour')).center()), //solarNoon
+      moment.range(times('goldenHour'), moment.range(times('goldenHour'), times('sunsetStart')).center()), //goldenHour
+      moment.range(times('sunsetStart'), moment.range(times('sunsetStart'), times('sunset')).center()), //sunsetStart
+      moment.range(times('sunset'), moment.range(times('sunset'), times('dusk')).center()), //sunset
+      moment.range(times('dusk'), moment.range(times('dusk'), times('nauticalDusk')).center()), //dusk
+      moment.range(times('nauticalDusk'), moment.range(times('nauticalDusk'), times('night')).center()), //nauticalDusk
+      moment.range(times('night'), times('nadir')), //night
+      moment.range(moment.range(times('nadir'), times('nightEnd')).center(), times('nightEnd')), //betweenNadir&NightEnd 1
+      moment.range(moment.range(times('nightEnd'), times('dawn')).center(), times('dawn')), //betweenNightEnd&Dawn 2
+      moment.range(moment.range(times('dawn'), times('sunrise')).center(), times('sunrise')), //betweenDawn&Sunrise 3
+      moment.range(moment.range(times('sunrise'), times('sunriseEnd')).center(), times('sunriseEnd')), //betweenSunrise&SunriseEnd 4
+      moment.range(moment.range(times('sunriseEnd'), times('goldenHourEnd')).center(), times('goldenHourEnd')), //betweensunriseEnd&GodlenEnd 5
+      moment.range(moment.range(times('goldenHourEnd'), times('solarNoon')).center(), times('solarNoon')), //betweengoldenEnd&Noon 6
+      moment.range(moment.range(times('solarNoon'), times('goldenHour')).center(), times('goldenHour')), //betweenNoon&Golden 7
+      moment.range(moment.range(times('goldenHour'), times('sunsetStart')).center(), times('sunsetStart')), //betweenGolden&SunsetStart 8
+      moment.range(moment.range(times('sunsetStart'), times('sunset')).center(), times('sunset')), //betweenSunsetStart&Sunset 9
+      moment.range(moment.range(times('sunset'), times('dusk')).center(), times('dusk')), //betweenSunset&Dusk 10
+      moment.range(moment.range(times('night'), times('nadir')).center(), times('nadir')), //betweenNight&Nadir 11
     ];
-
     for (let i = 0; i < ranges.length; i++) {
       //CHANGE TO SWITCH CASE
       if (now.within(ranges[i])) {
-        if (i == 0) {
-          console.log('NIGJHT')
-          console.log(ranges[i])
-          this.setState({
-            sunPosition: 'nadir'
-          })
+          console.log(i)
+          if (i == 0) {
+          setSunPosition('nadir');
+          setIsDay(0);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+          setWallpaper('night')
         }
           else if (i == 1) {
-            this.setState({
-              sunPosition: 'nightEnd'
-            })
+          setSunPosition('nightEnd');
+          setIsDay(0);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('night');
+            setMoonOpacity('opacity4')
           }
         else if (i == 2) {
-          this.setState({
-            sunPosition: 'nauticalDawn'
-          })
+          setSunPosition('nauticalDawn');
+          setIsDay(0);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+          setWallpaper('dawn');
+            setMoonOpacity('opacity3')
+
         }
       else if (i == 3) {
-        this.setState({
-          sunPosition: 'dawn'
-        })
-      }
+          setSunPosition('dawn');
+          setIsDay(0);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('dawn')
+            setMoonOpacity('opacity3')
+
+        }
         else if (i == 4) {
-          this.setState({
-            sunPosition: 'sunrise'
-          })
+          setSunPosition('sunrise');
+          setIsDay(1);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('sunrise')
+            setMoonOpacity('opacity2')
+
+
         }
         else if (i == 5) {
-          this.setState({
-            sunPosition: 'sunriseEnd'
-          })
+          setSunPosition('sunriseEnd');
+          setIsDay(1);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('sunrise')
+            setMoonOpacity('opacity1')
+
         }
         else if (i == 6) {
-          this.setState({
-            sunPosition: 'goldenHourEnd'
-          })
+          setSunPosition('goldenHourEnd');
+          setIsDay(1);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('day');
+            setMoonOpacity('opacity0')
+
         }
           else if (i == 7) {
-            this.setState({
-              sunPosition: 'solarNoon'
-            })
-          }
-        else if (i == 8) {
-          this.setState({
-            sunPosition: 'goldenHour'
-          })
+          setSunPosition('solarNoon');
+          setIsDay(1);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('day');
+            setMoonOpacity('opacity0');
+        }
+      else if (i == 8) {
+          setSunPosition('goldenHour');
+          setIsDay(1);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('day');
+            setMoonOpacity('opacity0');
         }
       else if (i == 9) {
-        this.setState({
-          sunPosition: 'sunsetStart'
-        })
-      }
+          setSunPosition('sunsetStart');
+          setIsDay(1);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('sunset')
+            setMoonOpacity('opacity1');
+        }
         else if (i == 10) {
-          this.setState({
-            sunPosition: 'sunset'
-          })
+          setSunPosition('sunset');
+          setIsDay(1);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('sunset');
+            setMoonOpacity('opacity2');
+
         }
         else if (i == 11) {
-          this.setState({
-            sunPosition: 'nauticalDusk'
-          })
+          setSunPosition('nauticalDusk');
+          setIsDay(0);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('dusk');
+            setMoonOpacity('opacity3');
+
         }
         else if (i == 12) {
-          this.setState({
-            sunPosition: 'dusk'
-          })
+          setSunPosition('dusk');
+          setIsDay(0);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('dusk');
+            setMoonOpacity('opacity3');
         }
         else if (i == 13) {
-          this.setState({
-            sunPosition: 'night'
-          })
+          setSunPosition('night');
+          setIsDay(0);
+          setWaxing('opacity4');
+          setWaning('opacity0');
+            setWallpaper('night');
+            setMoonOpacity('opacity4');
         }
         else if (i == 14) {
-          this.setState({
-            sunPosition: 'between1'
-          })
+          setSunPosition('between1');
+          setIsDay(0);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('night')
+            setMoonOpacity('opacity4');
         }
         else if (i == 15) {
-          this.setState({
-            sunPosition: 'between2'
-          })
+          setSunPosition('between2');
+          setIsDay(0);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('night');
+            setMoonOpacity('opacity4');
         }
         else if (i == 16) {
-          this.setState({
-            sunPosition: 'between3'
-          })
+          setSunPosition('between3');
+          setIsDay(0);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('dawn');
+            setMoonOpacity('opacity3');
         }
         else if (i == 17) {
-          this.setState({
-            sunPosition: 'between4'
-          })
+          setSunPosition('between4');
+          setIsDay(1);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('sunrise');
+            setMoonOpacity('opacity2');
         }
         else if (i == 18) {
-          this.setState({
-            sunPosition: 'between5'
-          })
+          setSunPosition('between5');
+          setIsDay(1);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('day');
+            setMoonOpacity('opacity1');
         }
         else if (i == 19) {
-          this.setState({
-            sunPosition: 'between6'
-          })
+          setSunPosition('between6');
+          setIsDay(1);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('day');
+            setMoonOpacity('opacity0');
         }
         else if (i == 20) {
-          this.setState({
-            sunPosition: 'between7'
-          })
+          setSunPosition('between7');
+          setIsDay(1);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('day');
+            setMoonOpacity('opacity0');
         }
         else if (i == 21) {
-          this.setState({
-            sunPosition: 'between8'
-          })
+          setSunPosition('between8');
+          setIsDay(1);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('sunset');
+            setMoonOpacity('opacity1');
         }
         else if (i == 22) {
-          this.setState({
-            sunPosition: 'between9'
-          })
+          setSunPosition('between9');
+          setIsDay(1);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('sunset');
+            setMoonOpacity('opacity2');
         }
         else if (i == 23) {
-          this.setState({
-            sunPosition: 'between10'
-          })
+          setSunPosition('between10');
+          setIsDay(0);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('sunset');
+            setMoonOpacity('opacity3');
         }
         else if (i == 24) {
-          this.setState({
-            sunPosition: 'between11'
-          })
+          setSunPosition('between11');
+          setIsDay(0);
+          setWaxing('opacity3');
+          setWaning('opacity1');
+            setWallpaper('night');
+            setMoonOpacity('opacity4');
         }
       }
     }
   }
 
-  CheckSeason() {
-    if (this.props.season == 0) {
+  const CheckSeason = () => {
+    if (season == 0) {
       return <div className="houseGround" id="winter"><div className="snowman" /></div>
-    } else if (this.props.season == 1) {
+    } else if (season == 1) {
     return <div className="houseGround" id="spring"><div className="shortGrass"><div className="flowers" /></div></div>
-    } else if (this.props.season == 2) {
+    } else if (season == 2) {
       return <div className="houseGround" id="summer"><div className="tallGrass"><div className="garden" /></div></div>
-    } else if (this.props.season == 3) {
+    } else if (season == 3) {
     return <div className="houseGround" id="fall"><div className="leaves" /></div>
     } else {
       return <div classame="houseGround" />
     }
   }
 
-  render() {
-    let skyDay = ['sunrise', 'between4', 'sunriseEnd', 'between5', 'goldenHourEnd', 'between6', 'solarNoon', 'between7', 'goldenHour', 'between8', 'sunsetStart', 'between9']
+    const waxOrWane = (current) => {
+      if (sunPosition === current) {
+        return skyWaxing
+      } else {
+        if (current === skies[sunPosition]?.prev) {
+          return skyWaning
+        } else {
+          return ''
+        }
+      }
+    }
+
+    const sunOpacities = (sun1, sun2, sun3) => {
+      if (sun1.includes(sunPosition)) {
+        return 'opacity4'
+      } else if (sun2.includes(sunPosition)) {
+          return 'opacity2'
+        } else if (sun3.includes(sunPosition)) {
+            return 'opacity3'
+      } else {
+        return 'opacity0'
+      }
+    }
     return(
-      <div className={this.props.isDay == 1 ? "sky skyDay" : "sky skyNight"}>
-        <div id="dusk" className="skyComponent"><div className="stars" /></div>
-        <div id="night" className="skyComponent"><div className="stars" /></div>
-        <div id="nadir" className="skyComponentNadir"><div className="stars" /></div>
-        <div id="nightEnd" className="skyComponent"><div className="stars" /></div>
-        <div id="dawn" className="skyComponent"><div className="stars" /></div>
-        <div id="sunrise" className="skyComponent" />
-        <div id="sunriseEnd" className="skyComponent" />
-        <div id="goldenHourEnd" className="skyComponent" />
-        <div id="noon" className="skyComponent" />
+      <div className={isDay == 1 ? "sky skyDay" : "sky skyNight"}>
+        <div id="nauticalDusk" className={`skyComponent ${waxOrWane('nauticalDusk')}`}></div>
+        <div id="dusk" className={`skyComponent ${waxOrWane('dusk')}`}></div>
+        <div id="night" className={`skyComponent ${waxOrWane('night')}`}><div className="stars" /></div>
+        <div id="nadir" className={`skyComponentNadir ${waxOrWane('nadir')}`}><div className="stars" /></div>
+        <div id="nightEnd" className={`skyComponent ${waxOrWane('nightEnd')}`}><div className="stars" /></div>
+        <div id="nauticalDawn" className={`skyComponent ${waxOrWane('nauticalDawn')}`}></div>
+        <div id="dawn" className={`skyComponent ${waxOrWane('dawn')}`}></div>
+        <div id="sunrise" className={`skyComponent ${waxOrWane('sunrise')}`} />
+          <div id="goldenHour" className={`skyComponent ${waxOrWane('goldenHour')}`} />
+          <div id="sunriseEnd" className={`skyComponent ${waxOrWane('sunriseEnd')}`} />
+        <div id="noon" className={`skyComponent ${waxOrWane('solarNoon')}`} />
+        <div id="goldenHourEnd" className={`skyComponent ${waxOrWane('goldenHourEnd')}`} />
+        <div id="sunsetStart" className={`skyComponent ${waxOrWane('sunsetStart')}`} />
+        <div id="sunset" className={`skyComponent ${waxOrWane('sunset')}`} />
+        <div id="between1" className={`skyComponent ${waxOrWane('between1')}`} />
+        <div id="between2" className={`skyComponent ${waxOrWane('between2')}`} />
+        <div id="between3" className={`skyComponent ${waxOrWane('between3')}`} />
+        <div id="between4" className={`skyComponent ${waxOrWane('between4')}`} />
+        <div id="between5" className={`skyComponent ${waxOrWane('between5')}`} />
+        <div id="between6" className={`skyComponent ${waxOrWane('between6')}`} />
+        <div id="between7" className={`skyComponent ${waxOrWane('between7')}`} />
+        <div id="between8" className={`skyComponent ${waxOrWane('between8')}`} />
+        <div id="between9" className={`skyComponent ${waxOrWane('between9')}`} />
+        <div id="between10" className={`skyComponent ${waxOrWane('between10')}`} />
+        <div id="between11" className={`skyComponent ${waxOrWane('between11')}`} />
 
-
-        <div id="sky">
+        <div id="sky" className={sunPosition}>
           <div className="day"></div>
           <div className="Sun">
-            <div className="sunColor" id="sunColorDuskDawn" />
-            <div className="sunColor" id="sunColorSunriseEndSunriseStart" />
-            <div className="sunColor" id="sunColorSunriseSunset" />
-            <div className="sunColor" id="sunColorGoldens" />
-            <div className="sunColor" id="sunNoon" />
+            <div className={`sunColor ${sunOpacities(['dusk', 'nauticalDusk', 'dawn', 'nauticalDawn'], ['sunsetStart', 'sunriseEnd'], ['between2', 'between10'])}`} id="sunColorDuskDawn" />
+            <div className={`sunColor ${sunOpacities(['sunsetStart', 'sunriseEnd'], ['sunrise', 'sunset'], ['between3', 'between9'])}`} id="sunColorSunriseEndSunriseStart" />
+            <div className={`sunColor ${sunOpacities(['sunrise', 'sunset'], ['sunsetStart', 'sunriseEnd'], ['between4', 'between8'])}`} id="sunColorSunriseSunset" />
+            <div className={`sunColor ${sunOpacities(['goldenHour', 'goldenHourEnd'], ['sunsetStart', 'sunriseEnd'], ['between5', 'between7'])}`} id="sunColorGoldens" />
+            <div className={`sunColor ${sunOpacities(['solarNoon'], ['goldenHour', 'goldenHourEnd'], ['between5', 'between6', 'between7'])}`} id="sunNoon" />
           </div>
-          <div className="Moon" />
+          <div className={`Moon ${moon} ${moonOpacity}`} />
         </div>
-        <div className={this.props.isDay == 0 ? "houseContainer houseNight" : "houseContainer"}>
-          {this.CheckSeason()}
+        <div className={isDay == 0 ? "houseContainer houseNight" : "houseContainer"}>
+          {CheckSeason()}
         <div className="house" />
         </div>
-        {this.props.isDay == 0 ? <div className="houseLight">
+        {isDay == 0 ? <div className="houseLight">
           <div className="lightYellow hLight" />
           <div className="lightOrange hLight" />
         </div> : null}
 
       </div>
     )
-  }
 }
 //
 /*

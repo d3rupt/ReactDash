@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import suncalc from 'suncalc'
 import Moment from 'moment'
 import { extendMoment } from 'moment-range';
@@ -7,91 +7,62 @@ import './App.css';
 import WeatherSection from './WeatherSection'
 import Calendar from './CalendarComponents/Calendar';
 import PicsNNews from './PicsNNews/PicsNNews'
+import {useDataLayerValue} from "./DataLayer";
 
 const moment = extendMoment(Moment);
 
-class App extends React.Component {
+function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [dayWallpaper, setWallpaper] = useState('');
+  const [{isDayGlobal, wallpaper}, dispatch] = useDataLayerValue();
+  const [isDay, setIsDay] = useState(null)
+  const [calendarSrc, setCalSrc] = useState(null);
+  const [calendarInput, getCalendarInput] = useState(false);
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      isLoading: false,
-      weatherData: null,
-      location: null,
-      calendarInput: null,
-      calendarSrc: null,
-      gotCalInput: false
-      //isDay: 1
-    }
-    this.isDay = this.isDay.bind(this)
-  }
+  useEffect(() => {
+    setIsDay(isDayGlobal);
+  }, [isDayGlobal])
 
-  getLocation = (weather) => {
-    console.log('APPLEVEL: ' + weather)
-    this.setState({location: weather}, this.RequestWeather)
-  }
+  useEffect(() => {
+    setWallpaper(wallpaper)
+  }, [wallpaper])
 
-  isDay() {
-    /*this.setState({
-      isDay: 0
-    })*/
-    let skyDay = ['sunrise', 'between4', 'sunriseEnd', 'between5', 'goldenHourEnd', 'between6', 'solarNoon', 'between7', 'goldenHour', 'between8', 'sunsetStart', 'between9']
-    // const sunTimes = suncalc.getTimes(new Date(), 49.895077, -97.138451);
-    if (document.getElementById('sky').classList.length != 0) {
-      if (skyDay.includes(document.getElementById('sky').classList[0])) {
-      if (this.state.isDay != 1) {
-        this.setState({
-          isDay: 1
-        })
-      }
-    } else {
-      //console.log('IS NOT WITHIN RANGE')
-      if (this.state.isDay != 0) {
-        this.setState({
-          isDay: 0
-        })
-      }
+  const wallpaperChooser = () => {
+    switch(dayWallpaper) {
+      case 'sunset':
+        return(<div className="background sunsetBackground" />);
+      case 'dusk':
+        return(<div className="background duskBackground" />);
+      case 'night':
+        return (<div className="background nightBackground" />);
+      case 'dawn':
+        return(<div className="background dawnBackground" />);
+      case 'sunrise':
+        return(<div className="background sunriseBackground" />);
+      case 'day':
+        return(<div className="background dayBackground" />);
     }
   }
-}
-
-  componentDidMount() {
-    /*this.setState({
-      isDay: 1
-    })*/
-    this.isDay()
-    let isDayInterval = setInterval(this.isDay, 10000)
-  }
-
-  render() {
-
     return (
-      <div className={this.state.isDay == 0 ? 'App opacity4' : 'App'}>
+      <div className={isDay == 0 ? 'App opacity4' : 'App'}>
       <div id="backgrounds">
-        <div className="background sunsetBackground" />
-        <div className="background duskBackground" />
-        <div className="background nightBackground" />
-        <div className="background dawnBackground" />
-        <div className="background sunriseBackground" />
-        <div className="background dayBackground" />
-
+        {wallpaperChooser()}
       </div>
-
-        {this.state.gotCalInput ?
+        {calendarInput ?
             <Calendar
-                isDay={this.state.isDay}
-                gotLink={this.state.gotCalInput}
-                calendarSrc={this.state.calendarSrc}
+                isDay={isDay}
+                gotLink={calendarInput}
+                calendarSrc={calendarSrc}
             />
             : null
         }
         <WeatherSection
-            isDay={this.state.isDay}
+            isDay={isDay}
         />
         <PicsNNews
-            isDay={this.state.isDay}
+            isDay={isDay}
         />
-        {this.state.gotCalInput ?
+        {calendarInput ?
           null :
             <div
                 id="calendarModal"
@@ -110,19 +81,15 @@ class App extends React.Component {
               <div id="calendarModalAnswers">
                 <div
                     onClick={() => {
-                      this.setState({
-                        calendarSrc: this.state.calendarInput,
-                        gotCalInput: true
-                      })
+                      getCalendarInput(true)
+                      setCalSrc(calendarInput)
                     }}
                 >
                   <p>OK</p>
                 </div>
                 <div
                     onClick={() => {
-                      this.setState({
-                        gotCalInput: true
-                      })
+                        getCalendarInput(true)
                     }}
                 >
                   <p>Cancel</p>
@@ -132,9 +99,7 @@ class App extends React.Component {
         }
       </div>
     );
-  }
 }
 
 export default App;
-/*
-*/
+

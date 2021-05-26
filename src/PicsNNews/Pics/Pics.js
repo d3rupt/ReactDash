@@ -1,10 +1,10 @@
 import React from 'react'
-/*import picOne from './1.jpg'
+import picOne from './1.jpg'
 import picTwo from './2.jpg'
 import picThree from './3.jpg'
 import picFour from './4.jpg'
 import picFive from './5.jpg'
-import picSix from './6.jpg'
+/*import picSix from './6.jpg'
 import picSeven from './7.jpg'
 import picEight from './8.jpg'
 import picNine from './9.jpg'
@@ -33,7 +33,7 @@ import ('./Pics.css')
 export default class Pics extends React.Component {
   constructor(props) {
     super(props)
-    //this.PicChooser = this.PicChooser.bind(this)
+    this.PicChooser = this.PicChooser.bind(this)
     this.state = {
       pics: null,
       picNumber: 4,
@@ -42,7 +42,7 @@ export default class Pics extends React.Component {
   }
 
   componentDidUpdate() {
-    //setTimeout(this.PicChooser, 60000 * 5)
+    setTimeout(this.PicChooser, 30000 * 1)
 }
 
   componentDidMount() {
@@ -53,7 +53,7 @@ export default class Pics extends React.Component {
     }
   }
 
-  /*PicChooser() {
+  PicChooser() {
     let picNodes = document.querySelectorAll('.picContainer')
       picNodes.forEach(pic => {
         pic.classList.add('opacity0')
@@ -68,12 +68,16 @@ export default class Pics extends React.Component {
         picNumber: 0
       })
     }
-}*/
+}
 
   render() {
     return(
         <div className="Pics" >
-          <p> Add pics to the Pics folder & follow the naming conventions to import your own images</p>
+          <div className="picContainer" style={{backgroundImage: `url('${picOne}')`}}></div>
+          <div className="picContainer" style={{backgroundImage: `url('${picTwo}')`}}></div>
+          <div className="picContainer" style={{backgroundImage: `url('${picThree}')`}}></div>
+          <div className="picContainer" style={{backgroundImage: `url('${picFour}')`}}></div>
+          <div className="picContainer" style={{backgroundImage: `url('${picFive}')`}}></div>
         </div>
 
     )

@@ -7,6 +7,7 @@
   box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.25);
   border-radius: 1%;
   transition: all 1s;
+  padding: 1px;
   /*animation: newsOpacity1 1s linear forwards;*/
 }
 .headline {

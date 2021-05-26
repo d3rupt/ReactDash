@@ -40,6 +40,8 @@ export default class WeatherSection extends React.Component {
     this.SetWeather = this.SetWeather.bind(this)
     this.getLocation = this.getLocation.bind(this)
     //this.theShow = this.theShow.bind(this)
+
+
     this.state = {
       isLoading: false,
       weatherData: null,
@@ -52,47 +54,6 @@ export default class WeatherSection extends React.Component {
     }
   }
 
-  /*theShow() {
-    let counter = 0;
-    let hourCounter = 0;
-    let weatherCounter = 0;
-
-    let showTimer = setInterval(() => {
-      console.log(counter)
-      console.log(hourCounter)
-      console.log(weatherCounter)
-
-      const positions = ['night', 'between11', 'nadir', 'between1', 'nightEnd', 'between2', 'nauticalDawn', 'dawn', 'between3', 'sunrise', 'between4', 'sunriseEnd', 'between5', 'goldenHourEnd', 'between6', 'solarNoon' ,'between7', 'goldenHour', 'between8', 'sunsetStart', 'between9', 'sunset', 'between10', 'dusk', 'nauticalDusk']
-      const winterCodes = [1066, 1114, 1117, 1147, 1213, 1219, 1225, 1237]
-      const summerCodes = [1000, 1030, 1087,1135, 1183, 1189, 1195, 1246, 1276,]
-      if (counter == positions.length) {
-        counter = 0;
-      }
-
-      if (hourCounter == 24) {
-        hourCounter = 0;
-      }
-
-      if (counter == 0) {
-      if (weatherCounter <= winterCodes.length - 1) {
-        this.setState({
-          code: winterCodes[weatherCounter]
-        })
-        weatherCounter++
-      }
-      else {
-        weatherCounter = 0;
-      }
-    }
-
-      this.setState({
-        sunPosition: positions[counter],
-        hour: hourCounter
-      })
-      counter++
-      hourCounter++
-    }, 10000)
-  }*/
   getLocation() {
    if (navigator.geolocation) {
      navigator.geolocation.getCurrentPosition ((position) => {
@@ -134,7 +95,7 @@ export default class WeatherSection extends React.Component {
         currentData: json.current,
         weatherData: json.forecast.forecastday,
         code: json.current.condition.code,
-        moon: json.forecast.forecastday[0].astro.moon_phase
+        moon: json.forecast.forecastday[0].astro.moon_phase.split(' ').join('')
       })
       //Season for idle anims
       if([11,0,2,1].includes(moment().month())) {
@@ -154,35 +115,7 @@ export default class WeatherSection extends React.Component {
           season: 3
         })
       }
-      //Moon phase
-      console.log('MOON:' + this.state.moon)
-      if (this.state.moon === 'New Moon') {
-        document.querySelector('.Moon').classList.remove('waningCrescent')
-        document.querySelector('.Moon').classList.add('newMoon')
-      } else if (this.state.moon === 'Waxing Crescent') {
-        document.querySelector('.Moon').classList.remove('newMoon')
-          document.querySelector('.Moon').classList.add('waxingCrescent')
-      } else if (this.state.moon === 'First Quarter') {
-        document.querySelector('.Moon').classList.remove('waxingCrescent')
-          document.querySelector('.Moon').classList.add('firstQuarter')
-      } else if (this.state.moon === 'Waxing Gibbous') {
-        document.querySelector('.Moon').classList.remove('firstQuarter')
-          document.querySelector('.Moon').classList.add('waxingGibbous')
-      } else if (this.state.moon === 'Full Moon') {
-        document.querySelector('.Moon').classList.remove('waxingGibbous')
-          document.querySelector('.Moon').classList.add('fullMoon')
-      } else if (this.state.moon === 'Waning Gibbous') {
-        document.querySelector('.Moon').classList.remove('fullMoon')
-          document.querySelector('.Moon').classList.add('waningGibbous')
-      } else if (this.state.moon === 'Last Quarter') {
-        document.querySelector('.Moon').classList.remove('waningGibbous')
-          document.querySelector('.Moon').classList.add('lastQuarter')
-      } else if (this.state.moon === 'Waning Crescent') {
-        document.querySelector('.Moon').classList.remove('lastQuarter')
-          document.querySelector('.Moon').classList.add('waningCrescent')
-}
-        //this.checkSunState();
-       // this.CheckSunPos();
+
       }
     ).catch((err) => {
       console.log('error')
@@ -331,19 +264,18 @@ export default class WeatherSection extends React.Component {
       <div className="Tiles">
         {this.state.isLoading ?
           <DayNightCycle
+            moon={this.state.moon}
             longitude={this.state.coords.longitude}
             latitude={this.state.coords.latitude}
-            sun={this.state.sunPosition}
             season={this.state.season}
             isDay={this.props.isDay}
             />
-          : <DayNightCycle
+          : /*<DayNightCycle
             longitude=''
             latitude=''
-            sun={this.state.sunPosition}
             season={this.state.season}
-            isDay={this.props.isDay}
-            />
+            />*/
+            null
           }
         {this.SetWeather()}
         <Clock
@@ -384,3 +316,46 @@ export default class WeatherSection extends React.Component {
     )
   }
 }
+
+
+/*theShow() {
+   let counter = 0;
+   let hourCounter = 0;
+   let weatherCounter = 0;
+
+   let showTimer = setInterval(() => {
+     console.log(counter)
+     console.log(hourCounter)
+     console.log(weatherCounter)
+
+     const positions = ['night', 'between11', 'nadir', 'between1', 'nightEnd', 'between2', 'nauticalDawn', 'dawn', 'between3', 'sunrise', 'between4', 'sunriseEnd', 'between5', 'goldenHourEnd', 'between6', 'solarNoon' ,'between7', 'goldenHour', 'between8', 'sunsetStart', 'between9', 'sunset', 'between10', 'dusk', 'nauticalDusk']
+     const winterCodes = [1066, 1114, 1117, 1147, 1213, 1219, 1225, 1237]
+     const summerCodes = [1000, 1030, 1087,1135, 1183, 1189, 1195, 1246, 1276,]
+     if (counter == positions.length) {
+       counter = 0;
+     }
+
+     if (hourCounter == 24) {
+       hourCounter = 0;
+     }
+
+     if (counter == 0) {
+     if (weatherCounter <= winterCodes.length - 1) {
+       this.setState({
+         code: winterCodes[weatherCounter]
+       })
+       weatherCounter++
+     }
+     else {
+       weatherCounter = 0;
+     }
+   }
+
+     this.setState({
+       sunPosition: positions[counter],
+       hour: hourCounter
+     })
+     counter++
+     hourCounter++
+   }, 10000)
+ }*/

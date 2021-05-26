@@ -1,64 +1,68 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import Headline from './Headline'
 
 import ('./News.css')
 
-export default class News extends React.Component {
-  constructor(props) {
-    super(props)
-    this.GetNews = this.GetNews.bind(this)
-    this.ShuffleNews = this.ShuffleNews.bind(this)
+export default function News() {
+  const [newsJson, getNewsJson] = useState(null);
+  const [headlines, getHeadlines] = useState(false);
+  const [shownHeadlines, getShownHeadlines] = useState([])
+  const [visible, setVisible] = useState(false)
+  const [animConsts, setAnimConsts] = useState({interval: 3,indexes: [0, 1, 2], timeout: 250})
+  const [newsInit, isNewsInit] = useState(false);
 
-    this.state = {
-      newsJson: null,
-      headlines: null,
-      shownHeadlines: null
+  useEffect(() => {
+    if (shownHeadlines) {
+      const interval = setInterval(() => {
+        if (shownHeadlines.length >= 3) {
+          console.log(shownHeadlines.length)
+          const shl = shownHeadlines
+          shl.shift()
+          animConsts.indexes.forEach(i => {
+            setTimeout(() => {
+              document?.getElementById(`headline${i}`)?.classList.add('opacity0')
+              if (i == 2) {
+                setTimeout(() => {
+                  getShownHeadlines([...shl])
+                }, 1100)
+                animConsts.indexes.forEach(i => {
+                  setTimeout(() => {
+                    setTimeout(() => {
+                      document?.getElementById(`headline${i}`)?.classList.remove('opacity0')
+                    }, 200 * (i+1))
+                  }, 1200)
+                })
+              }
+            }, 200 * (i+1))
+          })
+        } else {
+          clearInterval(interval)
+          GetNews()
+        }
+      }, 20 * 1000)
+      if (interval) {
+        return
+      }
     }
-  }
-  GetNews() {
+  }, [headlines])
+
+  const GetNews = () => {
     fetch('https://old.reddit.com/user/news-bot-dash/m/news/top.json')
     .then(res => res.json())
-    .then(newsLinks => {
-      let posts = [...newsLinks.data.children.slice(0,24)];
-      this.setState({
-        headlines: posts
+    .then(async(newsLinks) => {
+      let posts = [...newsLinks.data.children];
+      console.log('GETNEWS')
+      console.log(posts)
+      getShownHeadlines(posts)
+      getHeadlines(true)
     })
-  })
-}
-
-ShuffleNews() {
-  let posts = [...this.state.headlines]
-  if (this.state.headlines.length >= 3) {
-    this.setState({
-      headlines: posts.slice(3,)
-      })
-    } else {
-      this.GetNews()
-    }
-}
-
-  /*componentDidUpdate(prevState) {
-    if (this.state.headlines !== prevState.headlines) {
-    //setTimeout(this.ShuffleNews, 6000 * 10)
-    setTimeout(this.ShuffleNews, 600 * 10)
-    }
-  }*/
-  componentDidUpdate() {
-
-  }
-  componentDidMount() {
-    this.GetNews()
-    setInterval(this.ShuffleNews, 60000 * 5)
   }
 
-  render() {
     return(
       <div className="news">
-      {this.state.headlines != null ? this.state.headlines.slice(0,3).map(headline => {
-        return <Headline title={headline.data.title} subreddit={headline.data.subreddit_name_prefixed} thumbnail={headline.data.thumbnail} />
-      }) : null}
+      {shownHeadlines?.slice(0,3).map((headline, index) => {
+        return <Headline id={`headline${index}`} title={headline.data.title} subreddit={headline.data.subreddit_name_prefixed} thumbnail={headline.data.thumbnail} />
+      })}
       </div>
     )
-  }
 }
-/**/

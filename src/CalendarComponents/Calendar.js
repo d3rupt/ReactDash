@@ -14,7 +14,6 @@ export default class Calendar extends React.Component {
     }
   }
 
-
   GetEvents() {
     const env = runtimeEnv();
     let today = moment()
