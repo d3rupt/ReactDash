@@ -12,6 +12,10 @@ export default function News() {
   const [newsInit, isNewsInit] = useState(false);
 
   useEffect(() => {
+    if (!headlines) {
+      GetNews()
+    }
+
     if (shownHeadlines) {
       const interval = setInterval(() => {
         if (shownHeadlines.length >= 3) {
