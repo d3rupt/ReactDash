@@ -1,10 +1,10 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import picOne from './1.jpg'
 import picTwo from './2.jpg'
 import picThree from './3.jpg'
 import picFour from './4.jpg'
-import picFive from './5.jpg'
-/*import picSix from './6.jpg'
+/*import picFive from './5.jpg'
+import picSix from './6.jpg'
 import picSeven from './7.jpg'
 import picEight from './8.jpg'
 import picNine from './9.jpg'
@@ -30,58 +30,40 @@ import picTwentyeight from './28.jpg'*/
 
 import ('./Pics.css')
 
-export default class Pics extends React.Component {
-  constructor(props) {
-    super(props)
-    this.PicChooser = this.PicChooser.bind(this)
-    this.state = {
-      pics: null,
-      picNumber: 4,
-      hasPics: false
-    }
-  }
+export default function Pics() {
 
-  componentDidUpdate() {
-    setTimeout(this.PicChooser, 13 * 1000)
-}
+  const [pics, getPics] = useState(null);
+  const [picNumber, getPicNumber] = useState(0);
+  const [hasPics, getHasPics] = useState(false);
 
-  componentDidMount() {
-    if (this.state.hasPics) {
-      this.PicChooser()
-    } else {
-      return
-    }
-  }
+  useEffect(() => {
+      setInterval(PicChooser, 3*1000)
+  }, [])
 
-  PicChooser() {
+  const PicChooser = () => {
     let picNodes = document.querySelectorAll('.picContainer')
       picNodes.forEach(pic => {
         pic.classList.add('opacity0')
       })
-    picNodes[this.state.picNumber].classList.remove('opacity0')
-    if (this.state.picNumber < picNodes.length - 1) {
-      this.setState({
-        picNumber: this.state.picNumber + 1
-      })
+    picNodes[picNumber].classList.remove('opacity0')
+    if (picNumber < picNodes.length - 1) {
+        console.log('unppgics')
+      getPicNumber(picNumber+1)
     } else {
-      this.setState({
-        picNumber: 0
-      })
+        console.log('notnouffoocs')
+      getPicNumber(0)
     }
 }
 
-  render() {
     return(
         <div className="Pics" >
           <div className="picContainer" style={{backgroundImage: `url('${picOne}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picTwo}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picThree}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picFour}')`}}></div>
-          <div className="picContainer" style={{backgroundImage: `url('${picFive}')`}}></div>
         </div>
 
     )
-  }
 }
 
 /*
