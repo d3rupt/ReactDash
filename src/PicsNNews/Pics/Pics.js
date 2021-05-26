@@ -42,7 +42,7 @@ export default class Pics extends React.Component {
   }
 
   componentDidUpdate() {
-    setTimeout(this.PicChooser, 30000 * 1)
+    setTimeout(this.PicChooser, 13 * 1000)
 }
 
   componentDidMount() {
