@@ -117,7 +117,7 @@ export default class Calendar extends React.Component {
   }
 
   componentDidMount() {
-    this.GetEvents()
+    //this.GetEvents()
   }
 
   render() {

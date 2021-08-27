@@ -1,3 +1,6 @@
+.Pics {
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.25);
+}
 
 .picContainer {
   position: absolute;
@@ -12,6 +15,6 @@
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: 40%;*/
-  box-shadow: 3px 3px 2px 2px rgba(0,0,0,0.1);
+  box-shadow: 3px 3px 3px 3px rgba(0,0,0,0.25);
   transition: all 1s;
 }

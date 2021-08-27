@@ -7,14 +7,17 @@ export default class CalendarDay extends React.Component {
   }
   componentDidMount() {
     console.log(this.props.holidays)
-    document.querySelectorAll('.date')[0].style.background = 'rgba(255,0,0,0.5)';
+    document.querySelectorAll('.date-inner')[0].style.background = 'rgba(255,255,255,0.25)';
+    document.querySelectorAll('.date-inner')[0].style.color = '#333';
   }
   render() {
     return(
       <div className="calendar">
-        <div className="date">
-        <span className="weekDay">{this.props.weekday}</span>
-         <span className="dayOfWeek">{this.props.date}</span>
+        <div className="date flex">
+            <div className='date-inner flex'>
+                <span className="weekDay">{this.props.weekday}</span>
+                <span className="dayOfWeek">{this.props.date}</span>
+            </div>
         </div>
         <div className="events">
           <ul className="eventsList">

@@ -3,11 +3,11 @@ import picOne from './1.jpg'
 import picTwo from './2.jpg'
 import picThree from './3.jpg'
 import picFour from './4.jpg'
-/*import picFive from './5.jpg'
+import picFive from './5.jpg'
 import picSix from './6.jpg'
 import picSeven from './7.jpg'
 import picEight from './8.jpg'
-import picNine from './9.jpg'
+/*import picNine from './9.jpg'
 import picTen from './10.jpg'
 import picEleven from './11.jpg'
 import picTwelve from './12.jpg'
@@ -36,22 +36,28 @@ export default function Pics() {
   const [picNumber, getPicNumber] = useState(0);
   const [hasPics, getHasPics] = useState(false);
 
-  useEffect(() => {
-      setInterval(PicChooser, 3*1000)
+  let counter = 0;
+
+
+    useEffect(() => {
+      PicChooser();
+      setInterval(PicChooser, 5*1000);
   }, [])
 
   const PicChooser = () => {
-    let picNodes = document.querySelectorAll('.picContainer')
+        let picNodes = document.querySelectorAll('.picContainer');
       picNodes.forEach(pic => {
-        pic.classList.add('opacity0')
+        pic.classList.add('opacity0');
       })
-    picNodes[picNumber].classList.remove('opacity0')
-    if (picNumber < picNodes.length - 1) {
+
+    picNodes[counter].classList.remove('opacity0')
+    if (counter < picNodes.length - 1) {
         console.log('unppgics')
-      getPicNumber(picNumber+1)
+        counter++
+        console.log(picNumber)
     } else {
         console.log('notnouffoocs')
-      getPicNumber(0)
+      counter = 0;
     }
 }
 
@@ -61,6 +67,10 @@ export default function Pics() {
           <div className="picContainer" style={{backgroundImage: `url('${picTwo}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picThree}')`}}></div>
           <div className="picContainer" style={{backgroundImage: `url('${picFour}')`}}></div>
+            <div className="picContainer" style={{backgroundImage: `url('${picFive}')`}}></div>
+            <div className="picContainer" style={{backgroundImage: `url('${picSix}')`}}></div>
+            <div className="picContainer" style={{backgroundImage: `url('${picSeven}')`}}></div>
+            <div className="picContainer" style={{backgroundImage: `url('${picEight}')`}}></div>
         </div>
 
     )
